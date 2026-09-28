@@ -1,0 +1,24 @@
+/* Estilos personalizados para la Zona de Hinchas - Mateo */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+main h1 {
+    color: #198754 !important;
+}
+
+.card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+#listaComentarios .list-group-item {
+    background-color: #f1f3f5;
+    border: none;
+    margin-bottom: 5px;
+    border-radius: 6px;
+}
