@@ -23,8 +23,9 @@
       asistencias: 369,
       titulos: 37,
       numero: 10,
-      bio: 'Edson Arantes do Nascimento, considerado por muchos el mejor jugador de todos los tiempos. Único tricampeón mundial (1958, 1962, 1970) con la selección de Brasil.'
+      bio: 'Edson Arantes do Nascimento, "O Rei", es el único futbolista en la historia en ganar 3 Copas del Mundo (1958, 1962 y 1970). Debutó con Brasil a los 16 años y anotó más de 1.000 goles oficiales en toda su carrera. Su número 10 se convirtió en leyenda y la FIFA lo nombró "Atleta del Siglo" en el año 2000.'
     },
+
     {
       id: 'maradona',
       nombre: 'Diego Maradona',
@@ -38,8 +39,9 @@
       asistencias: 240,
       titulos: 12,
       numero: 10,
-      bio: 'Diego Armando Maradona, genio absoluto del fútbol. Campeón del mundo en México 1986 con la recordada "Mano de Dios" y el "Gol del Siglo" ante Inglaterra.'
+      bio: 'Diego Armando Maradona, el "Pibe de Oro", llevó a Argentina a la gloria en México 1986 con la actuación individual más recordada de la historia: la "Mano de Dios" y el "Gol del Siglo" ante Inglaterra en el mismo partido. En Napoli, convirtió a un equipo del sur de Italia en campeón por primera vez. Su zurda sigue siendo considerada la mejor de todos los tiempos.'
     },
+
     {
       id: 'messi',
       nombre: 'Lionel Messi',
@@ -53,8 +55,9 @@
       asistencias: 380,
       titulos: 44,
       numero: 10,
-      bio: 'Lionel Andrés Messi, campeón del mundo en Qatar 2022. Máximo ganador del Balón de Oro (8) y considerado por muchos el GOAT (Greatest Of All Time).'
+      bio: 'Lionel Andrés Messi, "La Pulga", es el único jugador en la historia en ganar 8 Balones de Oro y 6 Botas de Oro. Coronó su carrera levantando la Copa del Mundo en Qatar 2022, siendo elegido mejor jugador del torneo. Máximo goleador histórico del Barcelona y de la Selección Argentina, además de máximo asistidor en la historia del fútbol profesional.'
     },
+
     {
       id: 'cristiano',
       nombre: 'Cristiano Ronaldo',
@@ -68,8 +71,9 @@
       asistencias: 260,
       titulos: 35,
       numero: 7,
-      bio: 'Cristiano Ronaldo dos Santos Aveiro, máximo goleador histórico del fútbol profesional. 5 Champions League, 5 Balones de Oro y capitán de Portugal.'
+      bio: 'Cristiano Ronaldo dos Santos Aveiro, "CR7", es el máximo goleador histórico del fútbol profesional con más de 900 goles oficiales. Ganó 5 Champions League (récord compartido) y es el único jugador en anotar en 5 Mundiales distintos. Su disciplina, físico y mentalidad lo convirtieron en un ícono mundial más allá del deporte.'
     },
+
     {
       id: 'zidane',
       nombre: 'Zinedine Zidane',
@@ -83,8 +87,9 @@
       asistencias: 130,
       titulos: 15,
       numero: 5,
-      bio: 'Zinedine Yazid Zidane, campeón del mundo en 1998 y de la Eurocopa 2000 con Francia. Su elegancia y visión de juego lo hicieron único.'
+      bio: 'Zinedine Yazid Zidane, "Zizou", marcó dos goles de cabeza en la final del Mundial 1998 para darle a Francia su primera Copa del Mundo. Su "voltea" en la Champions League 2002 con el Real Madrid es considerado uno de los goles más elegantes de la historia. Como entrenador, ganó 3 Champions consecutivas con el Real Madrid, algo nunca antes visto.'
     },
+
     {
       id: 'ronaldinho',
       nombre: 'Ronaldinho',
@@ -98,7 +103,7 @@
       asistencias: 180,
       titulos: 18,
       numero: 10,
-      bio: 'Ronaldo de Assis Moreira, pura magia y sonrisa. Campeón del mundo 2002, Balón de Oro 2005 y el jugador más espectacular de su generación.'
+      bio: 'Ronaldo de Assis Moreira, "Ronaldinho Gaúcho", fue pura magia, sonrisa y alegría. Campeón del Mundial 2002 con Brasil, Balón de Oro 2005 y ovacionado de pie por el Santiago Bernabéu en un Clásico. Su regate, sus caños y sus jugadas imposibles lo convirtieron en el jugador más espectacular de su generación.'
     },
     {
       id: 'ronaldo9',
@@ -113,7 +118,7 @@
       asistencias: 130,
       titulos: 20,
       numero: 9,
-      bio: 'Ronaldo Luís Nazário de Lima, el delantero más letal de su era. Campeón del mundo 1994 y 2002, y máximo goleador del Mundial 2002.'
+      bio: 'Ronaldo Luís Nazário de Lima, "El Fenómeno", es considerado el mejor delantero centro de la historia. Campeón del Mundo 1994 y 2002, y máximo goleador del Mundial 2002 con 8 goles. Superó graves lesiones de rodilla que parecían terminar su carrera, para volver y ganar el Balón de Oro en 1997 y 2002.'
     },
     {
       id: 'cruyff',
@@ -128,8 +133,9 @@
       asistencias: 220,
       titulos: 22,
       numero: 14,
-      bio: 'Hendrik Johannes Cruyff, revolucionario del fútbol total. 3 Balones de Oro y creador del estilo que marcó al Barcelona moderno.'
+      bio: 'Hendrik Johannes Cruyff, "El Flaco", revolucionó el fútbol con el "Fútbol Total" de la Naranja Mecánica en el Mundial 1974. Ganó 3 Balones de Oro y como entrenador creó el estilo del Barcelona moderno (La Masia, tiki-taka). Su número 14 es leyenda y su frase "Jugar al fútbol es muy simple, pero jugar al fútbol simple es lo más difícil que hay" resume su filosofía.'
     },
+
     {
       id: 'beckenbauer',
       nombre: 'Franz Beckenbauer',
@@ -143,8 +149,9 @@
       asistencias: 90,
       titulos: 21,
       numero: 5,
-      bio: 'Franz Anton Beckenbauer, el mejor defensor de la historia. Campeón del mundo como jugador (1974) y como entrenador (1990).'
+      bio: 'Franz Anton Beckenbauer, "El Káiser", inventó la posición del líbero moderno. Es una de las dos personas en la historia en ganar el Mundial como jugador (1974) y como entrenador (1990). Su elegancia, liderazgo y visión táctica lo convirtieron en el defensor más influyente del siglo XX.'
     },
+
     {
       id: 'buffon',
       nombre: 'Gianluigi Buffon',
@@ -158,7 +165,7 @@
       asistencias: 5,
       titulos: 29,
       numero: 1,
-      bio: 'Gianluigi Buffon, leyenda bajo los tres palos. Campeón del mundo 2006 con Italia y considerado uno de los mejores arqueros de la historia.'
+      bio: 'Gianluigi Buffon, "Gigi", es considerado uno de los mejores arqueros de todos los tiempos. Campeón del Mundo 2006 con Italia, donde recibió solo 2 goles en todo el torneo (uno de ellos de penal). Jugó hasta los 45 años y acumuló más de 1.100 partidos oficiales. En 2006 ganó el Trofeo Yashin al mejor arquero del mundo.'
     }
   ];
 
