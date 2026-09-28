@@ -1,0 +1,21 @@
+.field-container {
+    max-width: 800px;
+    background: radial-gradient(circle, #2e7d32 0%, #1b5e20 100%);
+    box-shadow: 0 0 25px rgba(0, 255, 136, 0.2);
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+#pizarraCanvas {
+    width: 100%;
+    height: auto;
+    cursor: crosshair;
+    display: block;
+}
+
+.form-control-color {
+    width: 45px;
+    height: 38px;
+    padding: 2px;
+    cursor: pointer;
+}
