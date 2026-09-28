@@ -235,3 +235,237 @@
     margin-bottom: 0.3rem;
   }
 }
+
+/* ============================================================
+   GRID DE LEYENDAS Y TARJETAS
+============================================================= */
+.leyendas-section {
+  padding: 3rem 1.5rem 7rem;
+  max-width: 1320px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ---------- TARJETA DE LEYENDA ---------- */
+.legend-card {
+  position: relative;
+  background: linear-gradient(165deg, rgba(10, 14, 26, 0.85), rgba(17, 24, 39, 0.7));
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem 1.5rem 1.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
+  animation: fadeInUp 0.7s ease both;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.legend-card-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(255, 214, 10, 0.12),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  pointer-events: none;
+}
+
+.legend-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  border-color: rgba(255, 214, 10, 0.3);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 15px 45px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(255, 214, 10, 0.12),
+    0 0 80px rgba(0, 229, 255, 0.06);
+}
+
+.legend-card:hover .legend-card-glow {
+  opacity: 1;
+}
+
+/* Número gigante de fondo (tipo dorsal) */
+.legend-number {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.03);
+  line-height: 1;
+  pointer-events: none;
+  transition: color var(--transition-base);
+}
+
+.legend-card:hover .legend-number {
+  color: rgba(255, 214, 10, 0.08);
+}
+
+/* Ícono con halo */
+.legend-icon-wrap {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 214, 10, 0.1), transparent 70%);
+  transition: transform var(--transition-base);
+}
+
+.legend-card:hover .legend-icon-wrap {
+  transform: scale(1.1);
+}
+
+.legend-icon {
+  font-size: 3rem;
+  filter:
+    drop-shadow(0 0 12px rgba(255, 214, 10, 0.4))
+    drop-shadow(0 0 30px rgba(255, 214, 10, 0.15));
+  transition: filter var(--transition-base);
+}
+
+.legend-card:hover .legend-icon {
+  filter:
+    drop-shadow(0 0 18px rgba(0, 229, 255, 0.6))
+    drop-shadow(0 0 45px rgba(0, 229, 255, 0.25));
+}
+
+/* Nombre y apodo */
+.legend-name {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  color: var(--text-bright);
+  margin-bottom: 0.2rem;
+  transition: color var(--transition-fast);
+  letter-spacing: 1px;
+}
+
+.legend-card:hover .legend-name {
+  color: var(--accent-secondary);
+  text-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+}
+
+.legend-nickname {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 0.8rem;
+}
+
+/* País con bandera */
+.legend-country {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  padding: 0.25rem 0.8rem;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.legend-country .bandera {
+  font-size: 1rem;
+}
+
+/* Estadísticas */
+.legend-stats {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  width: 100%;
+  margin-bottom: 1.2rem;
+}
+
+.legend-stats .stat-box {
+  flex: 1;
+  text-align: center;
+}
+
+.legend-stats .number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 0.15rem;
+}
+
+.legend-stats .label {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+}
+
+/* Botón "Ver biografía" */
+.btn-bio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  border-radius: 50px;
+  padding: 0.6rem 1.4rem;
+  color: var(--accent-secondary);
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  margin-top: auto;
+}
+
+.btn-bio .arrow {
+  transition: transform var(--transition-base);
+  display: inline-block;
+}
+
+.btn-bio:hover {
+  background: rgba(0, 229, 255, 0.1);
+  border-color: var(--accent-secondary);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.btn-bio:hover .arrow {
+  transform: translateX(5px);
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .legend-number { font-size: 3rem; }
+  .legend-icon { font-size: 2.5rem; }
+  .legend-stats { gap: 0.8rem; }
+  .legend-stats .number { font-size: 1.05rem; }
+}
