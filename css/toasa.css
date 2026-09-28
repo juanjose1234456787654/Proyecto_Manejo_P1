@@ -93,3 +93,145 @@
   line-height: 1.8;
   letter-spacing: 0.3px;
 }
+
+/* ============================================================
+   SECCIÓN DE FILTROS Y BUSCADOR
+============================================================= */
+.filtros-section {
+  padding: 2rem 1.5rem 1rem;
+  max-width: 1320px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.filtros-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: linear-gradient(165deg, rgba(10, 14, 26, 0.7), rgba(17, 24, 39, 0.5));
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- BUSCADOR ---------- */
+.buscador-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.buscador-icon {
+  position: absolute;
+  left: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.buscador-input {
+  width: 100%;
+  padding: 0.9rem 1.2rem 0.9rem 3rem;
+  background: rgba(3, 5, 9, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50px;
+  color: var(--text-bright);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  outline: none;
+  transition: all var(--transition-base);
+}
+
+.buscador-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.buscador-input:focus {
+  border-color: rgba(0, 229, 255, 0.4);
+  background: rgba(3, 5, 9, 0.85);
+  box-shadow:
+    0 0 20px rgba(0, 229, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ---------- GRUPOS DE FILTROS ---------- */
+.filtros-grupo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.filtros-label {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent-gold);
+  margin-right: 0.5rem;
+}
+
+/* ---------- BOTONES DE FILTRO ---------- */
+.filtro-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.filtro-btn:hover {
+  color: var(--accent-secondary);
+  border-color: rgba(0, 229, 255, 0.3);
+  background: rgba(0, 229, 255, 0.06);
+  transform: translateY(-2px);
+}
+
+.filtro-btn.active {
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  border-color: transparent;
+  box-shadow:
+    0 0 16px rgba(124, 58, 237, 0.4),
+    0 0 30px rgba(0, 229, 255, 0.15);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  .filtros-wrapper {
+    padding: 1.5rem 1rem;
+    gap: 1.2rem;
+  }
+  .filtros-grupo {
+    gap: 0.4rem;
+  }
+  .filtro-btn {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.7rem;
+  }
+  .filtros-label {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.3rem;
+  }
+}
