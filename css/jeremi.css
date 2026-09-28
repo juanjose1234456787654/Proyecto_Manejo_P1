@@ -94,3 +94,89 @@
     box-shadow: var(--shadow-glow-cyan);
     outline: none;
 }
+/* ============================================================
+   ESTILOS INTERACTIVOS Y MODAL (JEREMI)
+================================================ catalog */
+
+/* Indicador de clic en la tarjeta */
+.stadium-card {
+    cursor: pointer;
+    position: relative;
+}
+
+.stadium-card::before {
+    content: '🔍 Haz clic para ver detalles';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(10, 14, 26, 0.85);
+    color: var(--accent-secondary);
+    font-size: 0.72rem;
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    z-index: 2;
+}
+
+.stadium-card:hover::before {
+    opacity: 1;
+}
+
+/* Modal Neón Estilo "Noche de Champions" */
+.modal-neon .modal-content {
+    background: var(--bg-elevated);
+    border: 1px solid rgba(0, 229, 255, 0.25);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), var(--shadow-glow-cyan);
+    overflow: hidden;
+}
+
+.modal-neon .modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, var(--bg-secondary), var(--bg-elevated));
+}
+
+.modal-neon .modal-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.modal-stadium-img {
+    height: 260px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Línea de tiempo Neón */
+.timeline-container {
+    border-left: 2px solid var(--accent-primary);
+    margin-left: 8px;
+}
+
+.timeline-item {
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -21px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent-secondary);
+    box-shadow: 0 0 8px var(--accent-secondary);
+}
+
+/* Transición suave del modal */
+.modal.fade .modal-dialog {
+    transform: scale(0.92);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal.show .modal-dialog {
+    transform: scale(1);
+}
