@@ -271,6 +271,31 @@
       aplicarFiltros();
     });
   }
+  
+  // ============================================================
+  // FILTROS POR BOTONES (Época y Posición)
+  // ============================================================
+  const gruposFiltros = document.querySelectorAll('.filtros-grupo');
+
+  gruposFiltros.forEach(grupo => {
+    const tipo = grupo.dataset.filtro; // 'epoca' o 'posicion'
+    const botones = grupo.querySelectorAll('.filtro-btn');
+
+    botones.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Quitar "active" de todos los botones del grupo
+        botones.forEach(b => b.classList.remove('active'));
+        // Activar el botón clickeado
+        btn.classList.add('active');
+
+        // Actualizar el estado según el tipo
+        estado[tipo] = btn.dataset.valor;
+
+        // Re-aplicar filtros
+        aplicarFiltros();
+      });
+    });
+  });
 
   // ============================================================
   // INICIALIZACIÓN
@@ -278,3 +303,4 @@
   renderLeyendas(leyendas);
 
 })();
+
