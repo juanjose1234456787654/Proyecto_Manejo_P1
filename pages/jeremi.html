@@ -4,85 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GolStats - Estadios Legendarios</title>
+    <!-- Fuentes corporativas Noche de Champions -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Estilos compartidos y propios -->
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/jeremi.css">
 </head>
-<body class="bg-dark text-light">
+<body>
 
-    <!-- Navbar dinámico cargado mediante JS compartido -->
+    <!-- Contenedor del Navbar dinámico compartidos -->
     <div id="navbar-container"></div>
 
-    <!-- Encabezado Principal -->
+    <!-- Encabezado / Hero -->
     <header class="stadium-hero text-center py-5 mb-4">
-        <div class="container">
-            <h1 class="display-4 fw-bold text-success">🏟️ Estadios Legendarios</h1>
-            <p class="lead">Explora los templos del fútbol mundial que han hecho historia.</p>
+        <div class="container py-3">
+            <a href="../index.html" class="btn-volver mb-3">← Volver al Hub</a>
+            <h1 class="display-3 fw-bold gradient-text">🏟️ Estadios Legendarios</h1>
+            <p class="lead text-muted-custom mx-auto" style="max-width: 650px;">
+                Descubre los coliseos del fútbol mundial donde se escribieron los capítulos más célebres de la historia.
+            </p>
         </div>
     </header>
 
-    <!-- Contenido Principal: Tarjetas de Estadios -->
-    <main class="container my-4">
-        <!-- Buscador / Filtro -->
-        <div class="row mb-4">
+    <!-- Contenido Principal -->
+    <main class="container my-5">
+        <!-- Barra de Búsqueda y Filtro -->
+        <div class="row mb-5">
             <div class="col-md-6 mx-auto">
-                <input type="text" id="stadium-search" class="form-control form-control-lg bg-dark text-light border-secondary" placeholder="Buscar estadio o ciudad...">
+                <input type="text" id="stadium-search" class="form-control stadium-search-input" placeholder="🔍 Buscar estadio, ciudad o país...">
             </div>
         </div>
 
+        <!-- Rejilla de Tarjetas -->
         <div class="row g-4" id="stadiums-grid">
-            <!-- Estadio 1 -->
+            
+            <!-- Estadio 1: Maracaná -->
             <div class="col-md-4 stadium-card-item">
-                <div class="card h-100 bg-secondary text-light border-0 shadow">
-                    <img src="https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&w=600&q=80" class="card-img-top stadium-img" alt="Maracaná">
-                    <div class="card-body">
-                        <h5 class="card-title text-success">Estadio Maracaná</h5>
-                        <p class="card-text text-light-50">📍 Río de Janeiro, Brasil</p>
-                        <p class="card-text">Inaugurado en 1950. Sede de dos finales de la Copa del Mundo y escenario de momentos icónicos del fútbol sudamericano.</p>
+                <div class="card h-100 stadium-card border-0">
+                    <div class="stadium-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&w=600&q=80" class="stadium-img" alt="Maracaná">
                     </div>
-                    <div class="card-footer bg-transparent border-0 pb-3">
-                        <span class="badge bg-success">Capacidad: 78,838</span>
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge badge-gold">Inaugurado en 1950</span>
+                            <span class="badge badge-cyan">Capacidad: 78,838</span>
+                        </div>
+                        <h3 class="card-title h4 text-bright mb-2">Estadio Maracaná</h3>
+                        <p class="text-muted-custom small mb-3">📍 Río de Janeiro, Brasil</p>
+                        <p class="card-text text-primary small">
+                            Templo sagrado del fútbol sudamericano. Sede de dos finales de la Copa Mundial de la FIFA y múltiples finales de Copa Libertadores.
+                        </p>
                     </div>
                 </div>
             </div>
 
-            <!-- Estadio 2 -->
+            <!-- Estadio 2: Santiago Bernabéu -->
             <div class="col-md-4 stadium-card-item">
-                <div class="card h-100 bg-secondary text-light border-0 shadow">
-                    <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=600&q=80" class="card-img-top stadium-img" alt="Santiago Bernabéu">
-                    <div class="card-body">
-                        <h5 class="card-title text-success">Santiago Bernabéu</h5>
-                        <p class="card-text text-light-50">📍 Madrid, España</p>
-                        <p class="card-text">Casa del Real Madrid. Un coliseo moderno que ha sido testigo de múltiples finales de la Champions League.</p>
+                <div class="card h-100 stadium-card border-0">
+                    <div class="stadium-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=600&q=80" class="stadium-img" alt="Santiago Bernabéu">
                     </div>
-                    <div class="card-footer bg-transparent border-0 pb-3">
-                        <span class="badge bg-success">Capacidad: 81,044</span>
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge badge-gold">Inaugurado en 1947</span>
+                            <span class="badge badge-cyan">Capacidad: 81,044</span>
+                        </div>
+                        <h3 class="card-title h4 text-bright mb-2">Santiago Bernabéu</h3>
+                        <p class="text-muted-custom small mb-3">📍 Madrid, España</p>
+                        <p class="card-text text-primary small">
+                            Hogar del Real Madrid C.F. Recientemente remodelado a una maravilla tecnológica de vanguardia con césped retráctil.
+                        </p>
                     </div>
                 </div>
             </div>
 
-            <!-- Estadio 3 -->
+            <!-- Estadio 3: Wembley -->
             <div class="col-md-4 stadium-card-item">
-                <div class="card h-100 bg-secondary text-light border-0 shadow">
-                    <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80" class="card-img-top stadium-img" alt="Wembley">
-                    <div class="card-body">
-                        <h5 class="card-title text-success">Wembley Stadium</h5>
-                        <p class="card-text text-light-50">📍 Londres, Inglaterra</p>
-                        <p class="card-text">La catedral del fútbol británico. Con su icónico arco, alberga las finales de la FA Cup y eventos de clase mundial.</p>
+                <div class="card h-100 stadium-card border-0">
+                    <div class="stadium-img-wrapper">
+                      <img src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=600&q=80" class="stadium-img" alt="Wembley Stadium">
                     </div>
-                    <div class="card-footer bg-transparent border-0 pb-3">
-                        <span class="badge bg-success">Capacidad: 90,000</span>
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge badge-gold">Reapertura en 2007</span>
+                            <span class="badge badge-cyan">Capacidad: 90,000</span>
+                        </div>
+                        <h3 class="card-title h4 text-bright mb-2">Wembley Stadium</h3>
+                        <p class="text-muted-custom small mb-3">📍 Londres, Inglaterra</p>
+                        <p class="card-text text-primary small">
+                            Conocido como la Catedral del Fútbol Británico. Famoso por su emblemático arco de 133 metros de altura.
+                        </p>
                     </div>
                 </div>
             </div>
+
         </div>
     </main>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Scripts compartidos y propios -->
     <script src="../js/navbar.js"></script>
     <script src="../js/jeremi.js"></script>
 </body>
