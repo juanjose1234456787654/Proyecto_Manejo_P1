@@ -47,7 +47,7 @@
       <li><a href="#stats">Stats</a></li>
       <li><a href="pages/leyendas.html">Leyendas</a></li>
       <li><a href="pages/sala-prensa.html">Noticias</a></li>
-      <li><a href="#contacto" class="btn-neon" style="padding:0.5rem 1.4rem; font-size:0.8rem;">Únete</a></li>
+      <li><a href="#contacto" class="btn-neon nav-cta">Únete</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
       <span></span>
@@ -125,67 +125,73 @@
     <div class="row g-4">
 
       <div class="col-12 col-md-6 col-lg-4">
-        <a href="pages/estadisticas.html" class="card-hub d-block reveal" style="transition-delay:0.05s" id="card-estadisticas">
+        <a href="pages/juan.html" class="card-hub d-block reveal" style="transition-delay:0.05s" id="card-estadisticas">
           <div class="card-hub-border"></div>
           <span class="card-badge">En vivo</span>
           <span class="card-icon">⚡</span>
           <h3>Estadísticas en Vivo</h3>
           <p>Tabla de posiciones, resultados, goleadores y marcador en tiempo real de las principales ligas del mundo.</p>
+          <span class="card-dev">Desarrollado por: Juan</span>
           <span class="card-cta">Entrar <span class="card-cta-arrow">→</span></span>
         </a>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <a href="pages/leyendas.html" class="card-hub d-block reveal" style="transition-delay:0.1s" id="card-leyendas">
+        <a href="pages/toasa.html" class="card-hub d-block reveal" style="transition-delay:0.1s" id="card-leyendas">
           <div class="card-hub-border"></div>
           <span class="card-badge">Colección</span>
           <span class="card-icon">👑</span>
           <h3>Museo de Leyendas</h3>
           <p>Descubre a los jugadores más icónicos de la historia con tarjetas de estadísticas coleccionables y biografías.</p>
+          <span class="card-dev">Desarrollado por: Toasa</span>
           <span class="card-cta">Entrar <span class="card-cta-arrow">→</span></span>
         </a>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <a href="pages/pizarra-tactica.html" class="card-hub d-block reveal" style="transition-delay:0.15s" id="card-tactica">
+        <a href="pages/anahi.html" class="card-hub d-block reveal" style="transition-delay:0.15s" id="card-tactica">
           <div class="card-hub-border"></div>
           <span class="card-badge">Interactivo</span>
           <span class="card-icon">🧠</span>
           <h3>Pizarra Táctica</h3>
           <p>Formaciones, esquemas de juego y análisis táctico sobre una cancha interactiva con drag &amp; drop.</p>
+          <span class="card-dev">Desarrollado por: Anahi</span>
           <span class="card-cta">Entrar <span class="card-cta-arrow">→</span></span>
         </a>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <a href="pages/sala-prensa.html" class="card-hub d-block reveal" style="transition-delay:0.2s" id="card-prensa">
+        <a href="pages/celeste.html" class="card-hub d-block reveal" style="transition-delay:0.2s" id="card-prensa">
           <div class="card-hub-border"></div>
           <span class="card-badge">Noticias</span>
           <span class="card-icon">📰</span>
           <h3>Sala de Prensa</h3>
           <p>Noticias de último minuto, rumores de fichajes y los titulares más destacados del mundo del fútbol.</p>
+          <span class="card-dev">Desarrollado por: Celeste</span>
           <span class="card-cta">Entrar <span class="card-cta-arrow">→</span></span>
         </a>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <a href="pages/zona-hinchas.html" class="card-hub d-block reveal" style="transition-delay:0.25s" id="card-hinchas">
+        <a href="pages/mateo.html" class="card-hub d-block reveal" style="transition-delay:0.25s" id="card-hinchas">
           <div class="card-hub-border"></div>
           <span class="card-badge">Comunidad</span>
           <span class="card-icon">🎟️</span>
           <h3>Zona de Hinchas</h3>
           <p>Regístrate a la newsletter, participa en encuestas y comparte tu pasión por el fútbol con la comunidad.</p>
+          <span class="card-dev">Desarrollado por: Mateo</span>
           <span class="card-cta">Entrar <span class="card-cta-arrow">→</span></span>
         </a>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
-        <a href="pages/estadios.html" class="card-hub d-block reveal" style="transition-delay:0.3s" id="card-estadios">
+        <a href="pages/jeremi.html" class="card-hub d-block reveal" style="transition-delay:0.3s" id="card-estadios">
           <div class="card-hub-border"></div>
           <span class="card-badge">Galería</span>
           <span class="card-icon">🏟️</span>
           <h3>Estadios Legendarios</h3>
           <p>Galería inmersiva y comparador de los templos del fútbol más espectaculares del planeta.</p>
+          <span class="card-dev">Desarrollado por: Jeremi</span>
           <span class="card-cta">Entrar <span class="card-cta-arrow">→</span></span>
         </a>
       </div>
@@ -259,34 +265,14 @@
   <!-- Bootstrap JS Bundle (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+  <!-- Navbar: scroll, toggle, smooth-scroll -->
+  <script defer src="js/navbar.js"></script>
+
   <script>
   /* ============================================================
      GOLSTATS — JavaScript Premium
   ============================================================= */
 
-  // ---------- NAVBAR: Scroll Effect + Mobile Toggle ----------
-  const navbar = document.getElementById('mainNav');
-  const navToggle = document.getElementById('navToggle');
-  const navLinks = document.getElementById('navLinks');
-
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 60);
-  });
-
-  navToggle.addEventListener('click', () => {
-    navToggle.classList.toggle('active');
-    navLinks.classList.toggle('open');
-    document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
-  });
-
-  // Close mobile menu on link click
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navToggle.classList.remove('active');
-      navLinks.classList.remove('open');
-      document.body.style.overflow = '';
-    });
-  });
 
   // ---------- CURSOR GLOW (desktop only) ----------
   const cursorGlow = document.getElementById('cursorGlow');
@@ -457,16 +443,7 @@
     heroObserver.observe(document.getElementById('hero'));
   }
 
-  // ---------- SMOOTH SCROLL for anchor links ----------
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  });
+
   </script>
 
 </body>
