@@ -222,6 +222,55 @@
 
     container.innerHTML = html;
   }
+  
+  // ============================================================
+  // ESTADO DE FILTROS
+  // ============================================================
+  const estado = {
+    busqueda: '',
+    epoca: 'todas',
+    posicion: 'todas'
+  };
+
+  // ============================================================
+  // FUNCIÓN: Aplicar todos los filtros
+  // ============================================================
+  function aplicarFiltros() {
+    let resultado = [...leyendas];
+
+    // Filtrar por búsqueda (nombre o apodo)
+    if (estado.busqueda.trim() !== '') {
+      const q = estado.busqueda.toLowerCase().trim();
+      resultado = resultado.filter(l =>
+        l.nombre.toLowerCase().includes(q) ||
+        l.apodo.toLowerCase().includes(q) ||
+        l.pais.toLowerCase().includes(q)
+      );
+    }
+
+    // Filtrar por época
+    if (estado.epoca !== 'todas') {
+      resultado = resultado.filter(l => l.epoca === estado.epoca);
+    }
+
+    // Filtrar por posición
+    if (estado.posicion !== 'todas') {
+      resultado = resultado.filter(l => l.posicion === estado.posicion);
+    }
+
+    renderLeyendas(resultado);
+  }
+
+  // ============================================================
+  // BUSCADOR EN VIVO
+  // ============================================================
+  const buscador = document.getElementById('buscador');
+  if (buscador) {
+    buscador.addEventListener('input', (e) => {
+      estado.busqueda = e.target.value;
+      aplicarFiltros();
+    });
+  }
 
   // ============================================================
   // INICIALIZACIÓN
