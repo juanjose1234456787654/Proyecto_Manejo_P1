@@ -50,6 +50,56 @@
     </div>
   </section>
 
+  <!-- ============ FILTROS + BUSCADOR ============ -->
+  <section class="filtros-section">
+    <div class="container">
+      <div class="filtros-wrapper">
+
+        <!-- Buscador -->
+        <div class="buscador-wrapper">
+          <span class="buscador-icon">🔍</span>
+          <input
+            type="text"
+            id="buscador"
+            class="buscador-input"
+            placeholder="Buscar leyenda por nombre o apodo..."
+            autocomplete="off"
+          >
+        </div>
+
+        <!-- Botones de filtro por época -->
+        <div class="filtros-grupo" data-filtro="epoca">
+          <span class="filtros-label">Época:</span>
+          <button class="filtro-btn active" data-valor="todas">Todas</button>
+          <button class="filtro-btn" data-valor="80s">Años 80</button>
+          <button class="filtro-btn" data-valor="90s">Años 90</button>
+          <button class="filtro-btn" data-valor="2000s">2000s</button>
+          <button class="filtro-btn" data-valor="actual">Actualidad</button>
+        </div>
+
+        <!-- Botones de filtro por posición -->
+        <div class="filtros-grupo" data-filtro="posicion">
+          <span class="filtros-label">Posición:</span>
+          <button class="filtro-btn active" data-valor="todas">Todas</button>
+          <button class="filtro-btn" data-valor="Delantero">Delantero</button>
+          <button class="filtro-btn" data-valor="Mediocampista">Mediocampista</button>
+          <button class="filtro-btn" data-valor="Defensa">Defensa</button>
+          <button class="filtro-btn" data-valor="Arquero">Arquero</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GRID DE LEYENDAS ============ -->
+  <section class="leyendas-section">
+    <div class="container">
+      <div class="row g-4" id="leyendas-container">
+        <p class="text-center text-muted w-100">Cargando leyendas...</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
     <div class="footer-content">
