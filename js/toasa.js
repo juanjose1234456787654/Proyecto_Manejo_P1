@@ -337,9 +337,107 @@
   }
 
   // ============================================================
+  // SISTEMA DE PARTÍCULAS DEL HERO
+  // ============================================================
+  const canvas = document.getElementById('particles-hero');
+  const heroSection = document.getElementById('hero');
+
+  if (canvas && heroSection) {
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animId;
+    const PARTICLE_COUNT = 45;
+
+    function resizeCanvas() {
+      canvas.width = heroSection.offsetWidth;
+      canvas.height = heroSection.offsetHeight;
+    }
+
+    function createParticle() {
+      return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 1.8 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.35,
+        speedY: (Math.random() - 0.5) * 0.35,
+        opacity: Math.random() * 0.6 + 0.15,
+        // Dorado o cian
+        hue: Math.random() > 0.5 ? 45 : 188
+      };
+    }
+
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push(createParticle());
+      }
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${p.hue}, 90%, 65%, ${p.opacity})`;
+        ctx.fill();
+
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        // Reaparecer en el lado opuesto
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+      });
+
+      // Líneas de conexión
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 140) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(255, 214, 10, ${0.05 * (1 - dist / 140)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      animId = requestAnimationFrame(drawParticles);
+    }
+
+    // Solo animar cuando el hero esté visible
+    const heroObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (!animId) drawParticles();
+        } else {
+          cancelAnimationFrame(animId);
+          animId = null;
+        }
+      });
+    }, { threshold: 0 });
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      initParticles();
+    });
+
+    resizeCanvas();
+    initParticles();
+    heroObs.observe(heroSection);
+  }
+
+  // ============================================================
   // INICIALIZACIÓN
   // ============================================================
   renderLeyendas(leyendas);
 
 })();
-

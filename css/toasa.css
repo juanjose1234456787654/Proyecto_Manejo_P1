@@ -642,3 +642,20 @@
   .modal-bio-body { padding: 1.2rem; }
   .modal-bio-stat-number { font-size: 1.4rem; }
 }
+
+/* ============================================================
+   PARTÍCULAS DEL HERO
+============================================================= */
+#particles-hero {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.75;
+}
+
+.hero-leyendas-content {
+  z-index: 2;
+}
