@@ -1,0 +1,95 @@
+/* ============================================================
+   TOASA.CSS — Estilos exclusivos del Museo de Leyendas
+   Desarrollado por: Toasa
+============================================================= */
+
+/* ---------- HERO DE LEYENDAS ---------- */
+.hero-leyendas {
+  position: relative;
+  min-height: 55vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9rem 2rem 4rem;
+  text-align: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 214, 10, 0.12), transparent 70%),
+    radial-gradient(circle at 20% 80%, rgba(124, 58, 237, 0.15), transparent 60%),
+    radial-gradient(circle at 80% 70%, rgba(0, 229, 255, 0.1), transparent 60%);
+}
+
+.hero-leyendas::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 214, 10, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 214, 10, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.5), transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.5), transparent 75%);
+  pointer-events: none;
+}
+
+.hero-leyendas-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  animation: fadeInUp 1s ease both;
+}
+
+.hero-leyendas .hero-badge {
+  display: inline-block;
+  background: rgba(255, 214, 10, 0.1);
+  border: 1px solid rgba(255, 214, 10, 0.35);
+  color: var(--accent-gold);
+  padding: 0.45rem 1.3rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-heading);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: pulse-glow 3s infinite;
+}
+
+.hero-leyendas .hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  line-height: 1;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-secondary) 50%, var(--accent-primary) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter:
+    drop-shadow(0 0 10px rgba(255, 214, 10, 0.3))
+    drop-shadow(0 0 30px rgba(0, 229, 255, 0.15));
+  animation: gradient-shift 8s ease infinite;
+}
+
+.hero-leyendas .hero-subtitle {
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: var(--accent-secondary);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+}
+
+.hero-leyendas .hero-text {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+}
