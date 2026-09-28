@@ -1,0 +1,25 @@
+/* Estilos específicos para la sección Estadios Legendarios (Jeremy) */
+
+.stadium-hero {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    border-bottom: 3px solid #198754;
+}
+
+.stadium-img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.stadium-card-item .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stadium-card-item .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(25, 135, 84, 0.3) !important;
+}
+
+#stadium-search:focus {
+    box-shadow: 0 0 10px rgba(25, 135, 84, 0.5);
+    border-color: #198754;
+}
