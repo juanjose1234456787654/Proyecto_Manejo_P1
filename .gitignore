@@ -1,24 +1,30 @@
-# Compiled class file
+# ==========================================
+# JUSTIFICACIàN DE TECNOLOGÖAS IGNORADAS
+# ==========================================
+
+# Node.js: Se ignora "node_modules/" porque contiene miles de dependencias pesadas que se pueden reinstalar con "npm install". Los logs "npm-debug.log*" son autogenerados por errores.
+node_modules/
+npm-debug.log*
+
+# Python: Se ignora "__pycache__/" y "*.py[cod]" porque son archivos binarios autogenerados por el int‚rprete de Python que no aportan al c¢digo fuente y aumentan el tama¤o del repositorio.
+__pycache__/
+*.py[cod]
+
+# Java: Se ignoran los archivos compilados "*.class" y la carpeta "target/" porque se regeneran al compilar el proyecto con Maven o Gradle. Los archivos "*.log" y "hs_err_pid*" son autogenerados por la m quina virtual de Java.
+
+# Archivos compilados de Java
 *.class
 
-# Log file
+# Archivos de registro (logs)
 *.log
 
-# BlueJ files
-*.ctxt
+# Archivos de la M quina Virtual de Java (crash logs)
+hs_err_pid*
+replay_pid*
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
+# Archivos de empaquetado de Java (jar, war, ear, zip, tar)
 *.jar
 *.war
-*.nar
 *.ear
 *.zip
 *.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
