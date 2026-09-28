@@ -469,3 +469,176 @@
   .legend-stats { gap: 0.8rem; }
   .legend-stats .number { font-size: 1.05rem; }
 }
+
+/* ============================================================
+   MODAL DE BIOGRAFÍA
+============================================================= */
+.modal-bio {
+  background: linear-gradient(165deg, rgba(10, 14, 26, 0.98), rgba(17, 24, 39, 0.95));
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 60px rgba(124, 58, 237, 0.15);
+  overflow: hidden;
+}
+
+/* Borde superior neón */
+.modal-bio::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-gold),
+    var(--accent-secondary),
+    var(--accent-primary),
+    transparent
+  );
+  z-index: 1;
+}
+
+.modal-bio-header {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.5rem 1.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+}
+
+.modal-bio-icon-wrap {
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 214, 10, 0.15), transparent 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 214, 10, 0.2);
+  box-shadow: 0 0 30px rgba(255, 214, 10, 0.15);
+}
+
+.modal-bio-icon {
+  font-size: 2.2rem;
+  filter: drop-shadow(0 0 15px rgba(255, 214, 10, 0.5));
+}
+
+.modal-bio-titles {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.modal-bio-titles .modal-title {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--text-bright);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.modal-bio-nickname {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.modal-bio-body {
+  padding: 1.8rem;
+}
+
+.modal-bio-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-bio-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(0, 229, 255, 0.06);
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  color: var(--accent-secondary);
+  padding: 0.35rem 0.9rem;
+  border-radius: 50px;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.modal-bio-text {
+  color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 1.8rem;
+  padding-left: 1rem;
+  border-left: 3px solid;
+  border-image: linear-gradient(180deg, var(--accent-gold), var(--accent-secondary)) 1;
+}
+
+.modal-bio-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.modal-bio-stat {
+  text-align: center;
+  padding: 1rem 0.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+.modal-bio-stat:hover {
+  border-color: rgba(0, 229, 255, 0.25);
+  background: rgba(0, 229, 255, 0.04);
+  transform: translateY(-3px);
+}
+
+.modal-bio-stat-number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.modal-bio-stat-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .modal-bio-header { padding: 1.2rem; gap: 0.8rem; }
+  .modal-bio-icon-wrap { width: 55px; height: 55px; }
+  .modal-bio-icon { font-size: 1.7rem; }
+  .modal-bio-titles .modal-title { font-size: 1.2rem; }
+  .modal-bio-body { padding: 1.2rem; }
+  .modal-bio-stat-number { font-size: 1.4rem; }
+}

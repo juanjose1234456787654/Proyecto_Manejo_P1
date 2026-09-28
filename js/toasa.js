@@ -298,6 +298,45 @@
   });
 
   // ============================================================
+  // MODAL DE BIOGRAFÍA
+  // ============================================================
+  const modalBioEl = document.getElementById('modalBio');
+  let modalBio;
+
+  if (modalBioEl && typeof bootstrap !== 'undefined') {
+    modalBio = new bootstrap.Modal(modalBioEl);
+  }
+
+  function abrirBiografia(id) {
+    const l = leyendas.find(x => x.id === id);
+    if (!l) return;
+
+    // Rellenar el modal con los datos
+    document.getElementById('modalBioIcon').textContent = l.icono;
+    document.getElementById('modalBioLabel').textContent = l.nombre;
+    document.getElementById('modalBioNickname').textContent = l.apodo;
+    document.getElementById('modalBioCountry').textContent = `${l.bandera} ${l.pais}`;
+    document.getElementById('modalBioPosition').textContent = l.posicion;
+    document.getElementById('modalBioNumber').textContent = `Dorsal #${l.numero}`;
+    document.getElementById('modalBioText').textContent = l.bio;
+    document.getElementById('modalBioGoles').textContent = l.goles.toLocaleString('es-ES');
+    document.getElementById('modalBioAsist').textContent = l.asistencias.toLocaleString('es-ES');
+    document.getElementById('modalBioTitulos').textContent = l.titulos;
+
+    if (modalBio) modalBio.show();
+  }
+
+  // Delegación de eventos: escucha clicks en botones "Ver biografía"
+  if (container) {
+    container.addEventListener('click', (e) => {
+      const btn = e.target.closest('.btn-bio');
+      if (btn) {
+        abrirBiografia(btn.dataset.id);
+      }
+    });
+  }
+
+  // ============================================================
   // INICIALIZACIÓN
   // ============================================================
   renderLeyendas(leyendas);
