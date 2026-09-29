@@ -36,12 +36,12 @@
   top: 100%;
   left: 0;
   right: 0;
-  height: 48px;
+  height: 60px;
   pointer-events: none;
-  z-index: -1;
-  backdrop-filter: blur(16px) saturate(140%);
-  -webkit-backdrop-filter: blur(16px) saturate(140%);
-  /* Se desvanece hacia abajo: blur total arriba, invisible abajo */
+  z-index: 999;              /* encima del contenido para que el blur sea visible */
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  /* Desvanece de opaco (arriba) a transparente (abajo) */
   mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
 }
