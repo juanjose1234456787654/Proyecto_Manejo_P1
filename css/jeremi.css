@@ -1,182 +1,525 @@
 /* ============================================================
-   JEREMI.CSS — Módulo: Estadios Legendarios
-   Diseño integrado con los tokens de global.css
+   JEREMI.CSS — Modulo: Estadios Legendarios | GolStats
+   Paleta: Blanco / Grises / Celestes / Verdes / Toques Ambar
+   Alto contraste, tarjetas claras e iconos SVG sin emojis
 ============================================================= */
 
-/* Header / Hero de la sección */
+:root {
+  --j-sky:        #0ea5e9;
+  --j-sky-d:      #0284c7;
+  --j-sky-light:  #e0f2fe;
+  --j-green:      #10b981;
+  --j-green-d:    #059669;
+  --j-amber:      #f59e0b;
+  --j-amber-d:    #d97706;
+  --j-amber-light:#fef3c7;
+  --j-slate9:     #0f172a;
+  --j-slate8:     #1e293b;
+  --j-slate7:     #334155;
+  --j-slate5:     #64748b;
+  --j-slate3:     #cbd5e1;
+  --j-slate2:     #e2e8f0;
+  --j-slate1:     #f8fafc;
+  --j-bg:         #f0f5fa;
+  --j-white:      #ffffff;
+  --j-shadow:     0 4px 18px rgba(15, 23, 42, 0.06), 0 2px 6px rgba(15, 23, 42, 0.04);
+  --j-shadow-h:   0 14px 34px rgba(14, 165, 233, 0.16), 0 4px 12px rgba(15, 23, 42, 0.06);
+}
+
+body {
+  background-color: var(--j-bg) !important;
+  color: var(--j-slate9) !important;
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+}
+
+/* ==================== NAVBAR ==================== */
+.j-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+  padding: 0.85rem 1.5rem;
+}
+
+.j-nav__inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.j-nav__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--j-slate9);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.j-nav__logo:hover {
+  color: var(--j-sky-d);
+  transform: translateX(2px);
+}
+
+.j-nav__logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--j-sky), var(--j-green));
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(14, 165, 233, 0.25);
+}
+
+.j-btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--j-slate7);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1.5px solid var(--j-slate2);
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s, background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.j-btn-back:hover {
+  color: var(--j-sky-d);
+  border-color: var(--j-sky);
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.15);
+  transform: translateY(-1px);
+}
+
+/* ==================== HERO DE ESTADIOS ==================== */
 .stadium-hero {
-    background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.25), transparent 60%),
-                linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
-    border-bottom: 1px solid rgba(0, 229, 255, 0.15);
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  min-height: 48vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 2rem 3rem;
+  text-align: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.12), transparent 70%),
+    radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.10), transparent 60%),
+    radial-gradient(circle at 80% 70%, rgba(245, 158, 11, 0.08), transparent 60%);
 }
 
-.stadium-hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent-secondary), transparent);
+.stadium-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(14, 165, 233, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 165, 233, 0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.6), transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.6), transparent 75%);
+  pointer-events: none;
 }
 
-/* Tarjetas de Estadios con Efecto Glassmorphism */
-.stadium-card {
-    background: var(--bg-glass);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+.stadium-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.stadium-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--accent-secondary);
-    box-shadow: var(--shadow-card-hover);
+.stadium-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(14, 165, 233, 0.1);
+  border: 1.5px solid rgba(14, 165, 233, 0.3);
+  color: var(--j-sky-d);
+  padding: 0.4rem 1.25rem;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  font-family: var(--font-heading);
 }
 
-/* Imagen con zoom al hacer hover */
-.stadium-img-wrapper {
-    position: relative;
-    overflow: hidden;
-    height: 220px;
+.stadium-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 4.2rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.05;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(135deg, var(--j-slate9) 25%, var(--j-sky-d) 70%, var(--j-green-d) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.stadium-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform var(--transition-slow);
+.stadium-subtitle {
+  color: var(--j-slate5);
+  font-size: 1.05rem;
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.75;
 }
 
-.stadium-card:hover .stadium-img {
-    transform: scale(1.08);
+/* ==================== BUSCADOR ==================== */
+.stadium-search-wrap {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto 3rem;
 }
 
-/* Insignias / Badges Neón */
-.badge-gold {
-    background: rgba(255, 214, 10, 0.15);
-    color: var(--accent-gold);
-    border: 1px solid rgba(255, 214, 10, 0.3);
-    font-size: 0.8rem;
-    font-family: var(--font-heading);
-    letter-spacing: 0.5px;
+.stadium-search-icon {
+  position: absolute;
+  left: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--j-sky-d);
+  pointer-events: none;
 }
 
-.badge-cyan {
-    background: rgba(0, 225, 255, 0.15);
-    color: var(--accent-secondary);
-    border: 1px solid rgba(0, 225, 255, 0.3);
-    font-size: 0.8rem;
-    font-family: var(--font-heading);
-    letter-spacing: 0.5px;
-}
-
-/* Buscador Neón */
 .stadium-search-input {
-    background: var(--bg-secondary);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: var(--text-primary);
-    border-radius: var(--radius-md);
-    padding: 0.85rem 1.25rem;
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  width: 100%;
+  background: var(--j-white);
+  border: 1.5px solid var(--j-slate2);
+  border-radius: 50px;
+  padding: 0.95rem 1.4rem 0.95rem 3.4rem;
+  color: var(--j-slate9) !important;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  outline: none;
+  box-shadow: var(--j-shadow);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.stadium-search-input::placeholder {
+  color: var(--j-slate5);
 }
 
 .stadium-search-input:focus {
-    background: var(--bg-elevated);
-    color: var(--text-bright);
-    border-color: var(--accent-secondary);
-    box-shadow: var(--shadow-glow-cyan);
-    outline: none;
+  background: #ffffff;
+  border-color: var(--j-sky);
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.15), var(--j-shadow);
 }
-/* ============================================================
-   ESTILOS INTERACTIVOS Y MODAL (JEREMI)
-================================================ catalog */
 
-/* Indicador de clic en la tarjeta */
+/* ==================== TARJETAS DE ESTADIOS ==================== */
 .stadium-card {
-    cursor: pointer;
-    position: relative;
+  background: var(--j-white) !important;
+  border: 1.5px solid var(--j-slate2) !important;
+  border-radius: 20px !important;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--j-shadow) !important;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
 }
 
-.stadium-card::before {
-    content: '🔍 Haz clic para ver detalles';
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: rgba(10, 14, 26, 0.85);
-    color: var(--accent-secondary);
-    font-size: 0.72rem;
-    padding: 4px 10px;
-    border-radius: var(--radius-sm);
-    border: 1px solid rgba(0, 229, 255, 0.3);
-    opacity: 0;
-    transition: opacity var(--transition-fast);
-    z-index: 2;
+.stadium-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(14, 165, 233, 0.4) !important;
+  box-shadow: var(--j-shadow-h) !important;
 }
 
-.stadium-card:hover::before {
-    opacity: 1;
+/* Imagen con zoom */
+.stadium-img-wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 220px;
+  background-color: var(--j-slate2);
 }
 
-/* Modal Neón Estilo "Noche de Champions" */
+.stadium-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.stadium-card:hover .stadium-img {
+  transform: scale(1.08);
+}
+
+.stadium-card-hover-hint {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 3;
+}
+
+.stadium-card:hover .stadium-card-hover-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Contenido de la Tarjeta */
+.stadium-card-body {
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.stadium-card-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--j-slate9) !important;
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.5px;
+  transition: color 0.2s ease;
+}
+
+.stadium-card:hover .stadium-card-title {
+  color: var(--j-sky-d) !important;
+}
+
+.stadium-location {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--j-slate5) !important;
+  margin-bottom: 0.85rem;
+}
+
+.stadium-desc {
+  color: var(--j-slate7) !important;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  margin-bottom: 0;
+}
+
+/* Badges */
+.badge-gold {
+  background: var(--j-amber-light) !important;
+  color: var(--j-amber-d) !important;
+  border: 1px solid rgba(245, 158, 11, 0.35) !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  font-family: 'Montserrat', sans-serif !important;
+  padding: 0.35rem 0.75rem !important;
+  border-radius: 50px !important;
+}
+
+.badge-cyan {
+  background: var(--j-sky-light) !important;
+  color: var(--j-sky-d) !important;
+  border: 1px solid rgba(14, 165, 233, 0.35) !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  font-family: 'Montserrat', sans-serif !important;
+  padding: 0.35rem 0.75rem !important;
+  border-radius: 50px !important;
+}
+
+/* ==================== MODAL DE ESTADIO ==================== */
 .modal-neon .modal-content {
-    background: var(--bg-elevated);
-    border: 1px solid rgba(0, 229, 255, 0.25);
-    border-radius: var(--radius-lg);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), var(--shadow-glow-cyan);
-    overflow: hidden;
+  background: #ffffff !important;
+  color: var(--j-slate9) !important;
+  border: 1.5px solid var(--j-slate2) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.2) !important;
+  overflow: hidden;
 }
 
 .modal-neon .modal-header {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    background: linear-gradient(180deg, var(--bg-secondary), var(--bg-elevated));
+  background: var(--j-slate1) !important;
+  border-bottom: 1px solid var(--j-slate2) !important;
+  padding: 1.4rem 1.8rem !important;
 }
 
-.modal-neon .modal-footer {
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+.modal-neon .modal-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--j-slate9) !important;
+}
+
+.modal-neon .modal-body {
+  padding: 1.8rem !important;
+  color: var(--j-slate7) !important;
 }
 
 .modal-stadium-img {
-    height: 260px;
-    object-fit: cover;
-    border-radius: var(--radius-md);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  height: 240px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1.5px solid var(--j-slate2);
 }
 
-/* Línea de tiempo Neón */
+.modal-info-box {
+  background: var(--j-slate1) !important;
+  border: 1.5px solid var(--j-slate2) !important;
+  border-radius: 14px;
+  padding: 1.1rem;
+}
+
+.modal-info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.88rem;
+  color: var(--j-slate7);
+  margin-bottom: 0.4rem;
+}
+
+.modal-info-item:last-child {
+  margin-bottom: 0;
+}
+
+.modal-info-item strong {
+  color: var(--j-slate9);
+  font-weight: 700;
+}
+
+.modal-info-item span {
+  color: var(--j-sky-d);
+  font-weight: 600;
+}
+
+.modal-section-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--j-slate9) !important;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.6rem;
+}
+
+.modal-section-title svg {
+  color: var(--j-sky-d);
+}
+
+.modal-text-content {
+  color: var(--j-slate7) !important;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+/* Timeline */
 .timeline-container {
-    border-left: 2px solid var(--accent-primary);
-    margin-left: 8px;
+  border-left: 2px solid var(--j-sky);
+  margin-left: 12px;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
 }
 
 .timeline-item {
-    position: relative;
+  position: relative;
+  font-size: 0.88rem;
+  color: var(--j-slate7);
 }
 
 .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -21px;
-    top: 4px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--accent-secondary);
-    box-shadow: 0 0 8px var(--accent-secondary);
+  content: '';
+  position: absolute;
+  left: -23px;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--j-sky-d);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 2px var(--j-sky);
 }
 
-/* Transición suave del modal */
-.modal.fade .modal-dialog {
-    transform: scale(0.92);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.timeline-year {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  color: var(--j-sky-d);
+  margin-right: 0.35rem;
 }
 
-.modal.show .modal-dialog {
-    transform: scale(1);
+/* Partidos Históricos */
+.stadium-match-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.85rem;
+  background: var(--j-slate1);
+  border: 1px solid var(--j-slate2);
+  border-radius: 8px;
+  font-size: 0.86rem;
+  color: var(--j-slate7);
+  margin-bottom: 0.4rem;
+}
+
+.stadium-match-item svg {
+  color: var(--j-amber-d);
+  flex-shrink: 0;
+}
+
+/* Curiosidades */
+.stadium-curiosity-item {
+  color: var(--j-slate7);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin-bottom: 0.4rem;
+}
+
+.modal-neon .modal-footer {
+  background: var(--j-slate1) !important;
+  border-top: 1px solid var(--j-slate2) !important;
+  padding: 1rem 1.8rem !important;
+}
+
+/* ==================== FOOTER ==================== */
+.j-footer {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  border-top: 1px solid var(--j-slate2);
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--j-slate5);
+  font-size: 0.85rem;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 3rem;
 }
