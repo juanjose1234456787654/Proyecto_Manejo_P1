@@ -1,12 +1,12 @@
 .card-news {
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    border: 1px solid #333;
-    background-color: #12161f;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    border: 1px solid #2a2f3a;
+    background-color: #11151e;
 }
 
 .card-news:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(25, 135, 84, 0.3);
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(25, 135, 84, 0.35);
     border-color: #198754;
 }
 
@@ -15,9 +15,9 @@
     top: 12px;
     right: 12px;
     font-size: 0.75rem;
-    padding: 5px 10px;
+    padding: 6px 12px;
     border-radius: 20px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .badge-oficial {
@@ -38,5 +38,15 @@
 .btn-group .btn-outline-success.active {
     background-color: #198754;
     color: #ffffff;
-    box-shadow: 0 0 10px rgba(25, 135, 84, 0.4);
+    box-shadow: 0 0 12px rgba(25, 135, 84, 0.5);
+}
+
+.acreditacion-card {
+    background-color: #0d1117;
+    border-left: 4px solid #198754 !important;
+    transition: transform 0.2s ease;
+}
+
+.acreditacion-card:hover {
+    transform: translateX(4px);
 }
