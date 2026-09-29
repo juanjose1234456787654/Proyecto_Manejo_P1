@@ -1,0 +1,661 @@
+/* ============================================================
+   TOASA.CSS — Estilos exclusivos del Museo de Leyendas
+   Desarrollado por: Toasa
+============================================================= */
+
+/* ---------- HERO DE LEYENDAS ---------- */
+.hero-leyendas {
+  position: relative;
+  min-height: 55vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9rem 2rem 4rem;
+  text-align: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 214, 10, 0.12), transparent 70%),
+    radial-gradient(circle at 20% 80%, rgba(124, 58, 237, 0.15), transparent 60%),
+    radial-gradient(circle at 80% 70%, rgba(0, 229, 255, 0.1), transparent 60%);
+}
+
+.hero-leyendas::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 214, 10, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 214, 10, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.5), transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.5), transparent 75%);
+  pointer-events: none;
+}
+
+.hero-leyendas-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  animation: fadeInUp 1s ease both;
+}
+
+.hero-leyendas .hero-badge {
+  display: inline-block;
+  background: rgba(255, 214, 10, 0.1);
+  border: 1px solid rgba(255, 214, 10, 0.35);
+  color: var(--accent-gold);
+  padding: 0.45rem 1.3rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-heading);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: pulse-glow 3s infinite;
+}
+
+.hero-leyendas .hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  line-height: 1;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-secondary) 50%, var(--accent-primary) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter:
+    drop-shadow(0 0 10px rgba(255, 214, 10, 0.3))
+    drop-shadow(0 0 30px rgba(0, 229, 255, 0.15));
+  animation: gradient-shift 8s ease infinite;
+}
+
+.hero-leyendas .hero-subtitle {
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: var(--accent-secondary);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+}
+
+.hero-leyendas .hero-text {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+}
+
+/* ============================================================
+   SECCIÓN DE FILTROS Y BUSCADOR
+============================================================= */
+.filtros-section {
+  padding: 2rem 1.5rem 1rem;
+  max-width: 1320px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.filtros-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: linear-gradient(165deg, rgba(10, 14, 26, 0.7), rgba(17, 24, 39, 0.5));
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- BUSCADOR ---------- */
+.buscador-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.buscador-icon {
+  position: absolute;
+  left: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.buscador-input {
+  width: 100%;
+  padding: 0.9rem 1.2rem 0.9rem 3rem;
+  background: rgba(3, 5, 9, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50px;
+  color: var(--text-bright);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  outline: none;
+  transition: all var(--transition-base);
+}
+
+.buscador-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.buscador-input:focus {
+  border-color: rgba(0, 229, 255, 0.4);
+  background: rgba(3, 5, 9, 0.85);
+  box-shadow:
+    0 0 20px rgba(0, 229, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ---------- GRUPOS DE FILTROS ---------- */
+.filtros-grupo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.filtros-label {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent-gold);
+  margin-right: 0.5rem;
+}
+
+/* ---------- BOTONES DE FILTRO ---------- */
+.filtro-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.filtro-btn:hover {
+  color: var(--accent-secondary);
+  border-color: rgba(0, 229, 255, 0.3);
+  background: rgba(0, 229, 255, 0.06);
+  transform: translateY(-2px);
+}
+
+.filtro-btn.active {
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  border-color: transparent;
+  box-shadow:
+    0 0 16px rgba(124, 58, 237, 0.4),
+    0 0 30px rgba(0, 229, 255, 0.15);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  .filtros-wrapper {
+    padding: 1.5rem 1rem;
+    gap: 1.2rem;
+  }
+  .filtros-grupo {
+    gap: 0.4rem;
+  }
+  .filtro-btn {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.7rem;
+  }
+  .filtros-label {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.3rem;
+  }
+}
+
+/* ============================================================
+   GRID DE LEYENDAS Y TARJETAS
+============================================================= */
+.leyendas-section {
+  padding: 3rem 1.5rem 7rem;
+  max-width: 1320px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ---------- TARJETA DE LEYENDA ---------- */
+.legend-card {
+  position: relative;
+  background: linear-gradient(165deg, rgba(10, 14, 26, 0.85), rgba(17, 24, 39, 0.7));
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem 1.5rem 1.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
+  animation: fadeInUp 0.7s ease both;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.legend-card-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(255, 214, 10, 0.12),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  pointer-events: none;
+}
+
+.legend-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  border-color: rgba(255, 214, 10, 0.3);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 15px 45px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(255, 214, 10, 0.12),
+    0 0 80px rgba(0, 229, 255, 0.06);
+}
+
+.legend-card:hover .legend-card-glow {
+  opacity: 1;
+}
+
+/* Número gigante de fondo (tipo dorsal) */
+.legend-number {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.03);
+  line-height: 1;
+  pointer-events: none;
+  transition: color var(--transition-base);
+}
+
+.legend-card:hover .legend-number {
+  color: rgba(255, 214, 10, 0.08);
+}
+
+/* Ícono con halo */
+.legend-icon-wrap {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 214, 10, 0.1), transparent 70%);
+  transition: transform var(--transition-base);
+}
+
+.legend-card:hover .legend-icon-wrap {
+  transform: scale(1.1);
+}
+
+.legend-icon {
+  font-size: 3rem;
+  filter:
+    drop-shadow(0 0 12px rgba(255, 214, 10, 0.4))
+    drop-shadow(0 0 30px rgba(255, 214, 10, 0.15));
+  transition: filter var(--transition-base);
+}
+
+.legend-card:hover .legend-icon {
+  filter:
+    drop-shadow(0 0 18px rgba(0, 229, 255, 0.6))
+    drop-shadow(0 0 45px rgba(0, 229, 255, 0.25));
+}
+
+/* Nombre y apodo */
+.legend-name {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  color: var(--text-bright);
+  margin-bottom: 0.2rem;
+  transition: color var(--transition-fast);
+  letter-spacing: 1px;
+}
+
+.legend-card:hover .legend-name {
+  color: var(--accent-secondary);
+  text-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+}
+
+.legend-nickname {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 0.8rem;
+}
+
+/* País con bandera */
+.legend-country {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  padding: 0.25rem 0.8rem;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.legend-country .bandera {
+  font-size: 1rem;
+}
+
+/* Estadísticas */
+.legend-stats {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  width: 100%;
+  margin-bottom: 1.2rem;
+}
+
+.legend-stats .stat-box {
+  flex: 1;
+  text-align: center;
+}
+
+.legend-stats .number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 0.15rem;
+}
+
+.legend-stats .label {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+}
+
+/* Botón "Ver biografía" */
+.btn-bio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  border-radius: 50px;
+  padding: 0.6rem 1.4rem;
+  color: var(--accent-secondary);
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  margin-top: auto;
+}
+
+.btn-bio .arrow {
+  transition: transform var(--transition-base);
+  display: inline-block;
+}
+
+.btn-bio:hover {
+  background: rgba(0, 229, 255, 0.1);
+  border-color: var(--accent-secondary);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.btn-bio:hover .arrow {
+  transform: translateX(5px);
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .legend-number { font-size: 3rem; }
+  .legend-icon { font-size: 2.5rem; }
+  .legend-stats { gap: 0.8rem; }
+  .legend-stats .number { font-size: 1.05rem; }
+}
+
+/* ============================================================
+   MODAL DE BIOGRAFÍA
+============================================================= */
+.modal-bio {
+  background: linear-gradient(165deg, rgba(10, 14, 26, 0.98), rgba(17, 24, 39, 0.95));
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 60px rgba(124, 58, 237, 0.15);
+  overflow: hidden;
+}
+
+/* Borde superior neón */
+.modal-bio::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-gold),
+    var(--accent-secondary),
+    var(--accent-primary),
+    transparent
+  );
+  z-index: 1;
+}
+
+.modal-bio-header {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.5rem 1.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+}
+
+.modal-bio-icon-wrap {
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 214, 10, 0.15), transparent 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 214, 10, 0.2);
+  box-shadow: 0 0 30px rgba(255, 214, 10, 0.15);
+}
+
+.modal-bio-icon {
+  font-size: 2.2rem;
+  filter: drop-shadow(0 0 15px rgba(255, 214, 10, 0.5));
+}
+
+.modal-bio-titles {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.modal-bio-titles .modal-title {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--text-bright);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.modal-bio-nickname {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.modal-bio-body {
+  padding: 1.8rem;
+}
+
+.modal-bio-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-bio-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(0, 229, 255, 0.06);
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  color: var(--accent-secondary);
+  padding: 0.35rem 0.9rem;
+  border-radius: 50px;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.modal-bio-text {
+  color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 1.8rem;
+  padding-left: 1rem;
+  border-left: 3px solid;
+  border-image: linear-gradient(180deg, var(--accent-gold), var(--accent-secondary)) 1;
+}
+
+.modal-bio-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.modal-bio-stat {
+  text-align: center;
+  padding: 1rem 0.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+.modal-bio-stat:hover {
+  border-color: rgba(0, 229, 255, 0.25);
+  background: rgba(0, 229, 255, 0.04);
+  transform: translateY(-3px);
+}
+
+.modal-bio-stat-number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.modal-bio-stat-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .modal-bio-header { padding: 1.2rem; gap: 0.8rem; }
+  .modal-bio-icon-wrap { width: 55px; height: 55px; }
+  .modal-bio-icon { font-size: 1.7rem; }
+  .modal-bio-titles .modal-title { font-size: 1.2rem; }
+  .modal-bio-body { padding: 1.2rem; }
+  .modal-bio-stat-number { font-size: 1.4rem; }
+}
+
+/* ============================================================
+   PARTÍCULAS DEL HERO
+============================================================= */
+#particles-hero {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.75;
+}
+
+.hero-leyendas-content {
+  z-index: 2;
+}

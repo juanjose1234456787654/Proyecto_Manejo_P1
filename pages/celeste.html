@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GolStats - Sala de Prensa</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/sala_celeste.css">
+</head>
+<body class="bg-dark text-light">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black py-3 border-bottom border-success">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-success fs-3" href="../index.html">⚽ GolStats</a>
+            <a href="../index.html" class="btn btn-outline-light btn-sm">← Volver al Hub</a>
+        </div>
+    </nav>
+
+    <!-- Header Principal -->
+    <main class="container my-4">
+        <div class="text-center mb-4">
+            <h1 class="fw-bold text-success display-5">📰 Sala de Prensa Oficial</h1>
+            <p class="text-secondary">Comunicados oficiales, ruedas de prensa, entrevistas exclusivas y gestión de acreditaciones.</p>
+        </div>
+
+        <!-- Panel de Filtros, Buscador y Botón de Acreditación -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-10">
+                <div class="bg-dark p-3 rounded border border-secondary shadow d-flex flex-wrap gap-3 align-items-center justify-content-between">
+                    
+                    <!-- Buscador -->
+                    <div class="flex-grow-1" style="min-width: 220px;">
+                        <input type="text" id="searchInput" class="form-control bg-black text-light border-secondary" placeholder="🔍 Buscar noticias, frases o comunicados...">
+                    </div>
+
+                    <!-- Filtros por Categoría -->
+                    <div class="btn-group" role="group" id="filterGroup">
+                        <button type="button" class="btn btn-outline-success active fw-semibold" data-category="todos">Todas</button>
+                        <button type="button" class="btn btn-outline-success fw-semibold" data-category="oficial">Oficiales</button>
+                        <button type="button" class="btn btn-outline-success fw-semibold" data-category="rueda">Ruedas</button>
+                        <button type="button" class="btn btn-outline-success fw-semibold" data-category="entrevista">Entrevistas</button>
+                    </div>
+
+                    <!-- Botón para solicitar Acreditación -->
+                    <button class="btn btn-success fw-semibold shadow-sm" data-bs-toggle="modal" data-bs-target="#modalAcreditacion">
+                        🎙️ Solicitar Acreditación
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Galería de Comunicados y Noticias -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10">
+                <div id="newsContainer" class="row g-4">
+                    <!-- Contenido dinámico mediante JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Acreditaciones Registradas -->
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="bg-dark p-4 rounded border border-secondary shadow">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h4 class="fw-bold text-success mb-1">📋 Registro de Acreditaciones de Prensa</h4>
+                            <p class="text-secondary small mb-0">Solicitudes enviadas en tiempo real almacenadas localmente.</p>
+                        </div>
+                        <span id="totalAcreditaciones" class="badge bg-success fs-6">0 solicitudes</span>
+                    </div>
+                    <div id="acreditacionesList" class="row g-3">
+                        <!-- Carga dinámica de acreditaciones desde localStorage -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal 1: Formulario de Acreditación -->
+    <div class="modal fade" id="modalAcreditacion" tabindex="-1" aria-labelledby="modalAcreditacionLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-light border border-success">
+                <div class="modal-header border-secondary bg-black">
+                    <h5 class="modal-title fw-bold text-success" id="modalAcreditacionLabel">🎙️ Pase de Prensa y Acreditación</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <form id="formAcreditacion">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="nombrePeriodista" class="form-label text-secondary fw-semibold">Nombre del Periodista</label>
+                            <input type="text" id="nombrePeriodista" class="form-control bg-black text-light border-secondary" required placeholder="Ej: Celeste Telenchana">
+                        </div>
+                        <div class="mb-3">
+                            <label for="medioPrensa" class="form-label text-secondary fw-semibold">Medio de Comunicación</label>
+                            <input type="text" id="medioPrensa" class="form-control bg-black text-light border-secondary" required placeholder="Ej: Radio Cobertura / GolStats TV">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipoCobertura" class="form-label text-secondary fw-semibold">Tipo de Cobertura</label>
+                            <select id="tipoCobertura" class="form-select bg-black text-light border-secondary" required>
+                                <option value="Transmisión en Vivo">Transmisión en Vivo</option>
+                                <option value="Fotografía de Campo">Fotografía de Campo</option>
+                                <option value="Prensa Escrita / Digital">Prensa Escrita / Digital</option>
+                                <option value="Acceso a Zona Mixta">Acceso a Zona Mixta</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-secondary">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success fw-semibold">Enviar Solicitud</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Lectura Completa de Comunicado -->
+    <div class="modal fade" id="modalLectura" tabindex="-1" aria-labelledby="modalLecturaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-dark text-light border border-success">
+                <div class="modal-header border-secondary bg-black">
+                    <span id="modalCategoriaBadge" class="badge bg-success me-2">Categoría</span>
+                    <h5 class="modal-title fw-bold text-light" id="modalLecturaLabel">Título del Comunicado</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-success small fw-semibold" id="modalMetaInfo">📅 Fecha | ✍️ Autor</p>
+                    <div class="p-3 bg-black rounded border border-secondary my-3">
+                        <p class="lead text-light mb-0" id="modalContenido">Contenido del comunicado...</p>
+                    </div>
+                    
+                    <!-- Zona de Reacciones -->
+                    <div class="d-flex align-items-center gap-2 mt-4 pt-3 border-top border-secondary">
+                        <span class="fw-semibold text-secondary me-2">Reaccionar:</span>
+                        <button class="btn btn-outline-danger btn-sm btn-reaccion" data-tipo="like">❤️ <span id="likeCount">0</span></button>
+                        <button class="btn btn-outline-warning btn-sm btn-reaccion" data-tipo="fuego">🔥 <span id="fuegoCount">0</span></button>
+                        <button class="btn btn-outline-info btn-sm btn-reaccion" data-tipo="aplauso">👏 <span id="aplausoCount">0</span></button>
+                    </div>
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-outline-light btn-sm" onclick="window.print()">🖨️ Imprimir Comunicado</button>
+                    <button type="button" class="btn btn-success btn-sm fw-semibold" data-bs-dismiss="modal">Entendido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast de Notificación Flotante -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast bg-black text-light border border-success shadow" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-dark text-success border-secondary">
+                <strong class="me-auto">⚽ GolStats Prensa</strong>
+                <small>Ahora mismo</small>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Cerrar"></button>
+            </div>
+            <div class="toast-body" id="toastMessage">
+                Acción realizada con éxito.
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/sala_celeste.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+.field-container {
+    max-width: 800px;
+    background-color: #0b0f19;
+    box-shadow: 0 0 25px rgba(0, 255, 136, 0.2);
+    overflow: hidden;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+#pizarraCanvas {
+    width: 100%;
+    height: auto;
+    cursor: crosshair;
+    display: block;
+}
+
+.form-control-color {
+    width: 45px;
+    height: 38px;
+    padding: 2px;
+    cursor: pointer;
+}
+
+/* Efectos para los botones active */
+.btn-group .btn.active {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.btn-group .btn-outline-success.active {
+    background-color: #198754;
+    color: #ffffff;
+}
+
+.btn-group .btn-outline-warning.active {
+    background-color: #ffc107;
+    color: #000000;
+}

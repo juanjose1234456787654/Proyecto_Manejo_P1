@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GolStats - Estadios Legendarios</title>
+    <!-- Fuentes corporativas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos compartidos y propios -->
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/jeremi.css">
+</head>
+<body>
+
+    <!-- Contenedor del Navbar dinámico compartido -->
+    <div id="navbar-container"></div>
+
+    <!-- Encabezado / Hero -->
+    <header class="stadium-hero text-center py-5 mb-4">
+        <div class="container py-3">
+            <a href="../index.html" class="btn-volver mb-3">← Volver al Hub</a>
+            <h1 class="display-3 fw-bold gradient-text">🏟️ Estadios Legendarios</h1>
+            <p class="lead text-muted-custom mx-auto" style="max-width: 650px;">
+                Descubre los coliseos del fútbol mundial donde se escribieron los capítulos más célebres de la historia. Haz clic en cualquier estadio para explorar su historia completa.
+            </p>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="container my-5">
+        <!-- Buscador -->
+        <div class="row mb-5">
+            <div class="col-md-6 mx-auto">
+                <input type="text" id="stadium-search" class="form-control stadium-search-input" placeholder="🔍 Buscar estadio, ciudad o país...">
+            </div>
+        </div>
+
+        <!-- Rejilla de Estadios -->
+        <div class="row g-4" id="stadiums-grid">
+            
+            <!-- 1. Maracaná -->
+            <div class="col-md-4 stadium-card-item">
+                <div class="card h-100 stadium-card border-0" data-stadium="maracana">
+                    <div class="stadium-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=600&q=80" class="stadium-img" alt="Estadio Maracaná">
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge badge-gold">Inaugurado en 1950</span>
+                            <span class="badge badge-cyan">Capacidad: 78,838</span>
+                        </div>
+                        <h3 class="card-title h4 text-bright mb-2">Estadio Maracaná</h3>
+                        <p class="text-muted-custom small mb-3">📍 Río de Janeiro, Brasil</p>
+                        <p class="card-text text-primary small">
+                            Templo sagrado del fútbol sudamericano. Sede de dos finales de la Copa Mundial de la FIFA y escenario de momentos épicos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Santiago Bernabéu -->
+            <div class="col-md-4 stadium-card-item">
+                <div class="card h-100 stadium-card border-0" data-stadium="bernabeu">
+                    <div class="stadium-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=600&q=80" class="stadium-img" alt="Santiago Bernabéu">
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge badge-gold">Inaugurado en 1947</span>
+                            <span class="badge badge-cyan">Capacidad: 81,044</span>
+                        </div>
+                        <h3 class="card-title h4 text-bright mb-2">Santiago Bernabéu</h3>
+                        <p class="text-muted-custom small mb-3">📍 Madrid, España</p>
+                        <p class="card-text text-primary small">
+                            Hogar del Real Madrid C.F. Un coliseo moderno de vanguardia equipado con cubierta y césped retráctil.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Wembley Stadium -->
+            <div class="col-md-4 stadium-card-item">
+                <div class="card h-100 stadium-card border-0" data-stadium="wembley">
+                    <div class="stadium-img-wrapper">
+                        <img 
+                src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1000&q=80"
+                class="stadium-img"
+                alt="Wembley Stadium"
+            >
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge badge-gold">Reapertura en 2007</span>
+                            <span class="badge badge-cyan">Capacidad: 90,000</span>
+                        </div>
+                        <h3 class="card-title h4 text-bright mb-2">Wembley Stadium</h3>
+                        <p class="text-muted-custom small mb-3">📍 Londres, Inglaterra</p>
+                        <p class="card-text text-primary small">
+                            La catedral del fútbol británico. Reconocido mundialmente por su majestuoso arco de 133 metros de altura.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Camp Nou -->
+            <div class="col-md-4 stadium-card-item">
+                <div class="card h-100 stadium-card border-0" data-stadium="campnou">
+                    <div class="stadium-img-wrapper">
+                       <img 
+    src="https://imagenes2.eltiempo.com/files/image_1200_535/uploads/2023/07/07/64a8a29707fde.jpeg"
+    class="stadium-img" 
+    alt="Camp Nou - FC Barcelona">
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge badge-gold">Inaugurado en 1957</span>
+                            <span class="badge badge-cyan">Capacidad: 99,354</span>
+                        </div>
+                        <h3 class="card-title h4 text-bright mb-2">Spotify Camp Nou</h3>
+                        <p class="text-muted-custom small mb-3">📍 Barcelona, España</p>
+                        <p class="card-text text-primary small">
+                            El estadio con mayor capacidad de Europa. Feudo del FC Barcelona y hogar del mítico estilo de juego Tiki-Taka.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. San Siro -->
+            <div class="col-md-4 stadium-card-item">
+                <div class="card h-100 stadium-card border-0" data-stadium="sansiro">
+                    <div class="stadium-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?auto=format&fit=crop&w=600&q=80" class="stadium-img" alt="San Siro">
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge badge-gold">Inaugurado en 1926</span>
+                            <span class="badge badge-cyan">Capacidad: 75,817</span>
+                        </div>
+                        <h3 class="card-title h4 text-bright mb-2">San Siro / Meazza</h3>
+                        <p class="text-muted-custom small mb-3">📍 Milán, Italia</p>
+                        <p class="card-text text-primary small">
+                            Fortaleza compartida por los gigantes AC Milan e Inter de Milán. Un ícono de torres cilíndricas y tradición europea.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Allianz Arena -->
+            <div class="col-md-4 stadium-card-item">
+                <div class="card h-100 stadium-card border-0" data-stadium="allianz">
+                    <div class="stadium-img-wrapper">
+                        <img 
+    src="https://zajezdy.radynacestu.cz/img/w-1180%2Ch-660%2Cqr-1/2018-06-29/shutterstock-1018159663.jpg" 
+    class="stadium-img" 
+    alt="Allianz Arena">
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge badge-gold">Inaugurado en 2005</span>
+                            <span class="badge badge-cyan">Capacidad: 75,024</span>
+                        </div>
+                        <h3 class="card-title h4 text-bright mb-2">Allianz Arena</h3>
+                        <p class="text-muted-custom small mb-3">📍 Múnich, Alemania</p>
+                        <p class="card-text text-primary small">
+                            Casa del Bayern Múnich. Famoso por sus paneles exteriores de ETFE que se iluminan completamente en color rojo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Modal Neón de Información Ampliada -->
+    <div class="modal fade modal-neon" id="stadiumDetailModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content text-light">
+                <div class="modal-header d-flex justify-content-between align-items-center">
+                    <div>
+                        <h2 class="modal-title h3 fw-bold gradient-text mb-0" id="modalTitle">Nombre del Estadio</h2>
+                        <small class="text-muted-custom" id="modalLocation">Ubicación</small>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-5">
+                            <img id="modalImage" src="" class="w-100 modal-stadium-img" alt="Estadio">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="p-3 bg-dark rounded border border-secondary mb-3">
+                                <p class="mb-1 small"><strong>🏟️ Capacidad:</strong> <span id="modalCapacity" class="text-info"></span></p>
+                                <p class="mb-1 small"><strong>📅 Inauguración:</strong> <span id="modalYear" class="text-info"></span></p>
+                                <p class="mb-0 small"><strong>👕 Equipos Locales:</strong> <span id="modalTeams" class="text-info"></span></p>
+                            </div>
+                            <h5 class="text-gold h6 fw-bold">¿Por qué es Legendario?</h5>
+                            <p class="small text-muted-custom" id="modalWhyLegendary"></p>
+                        </div>
+                    </div>
+
+                    <!-- Historia Completa -->
+                    <div class="mb-4">
+                        <h5 class="text-gold h6 fw-bold mb-2">📜 Historia y Contexto</h5>
+                        <p class="small text-light" id="modalHistory"></p>
+                    </div>
+
+                    <!-- Línea de Tiempo y Partidos Históricos -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-6">
+                            <h5 class="text-gold h6 fw-bold mb-3">⏳ Línea del Tiempo</h5>
+                            <div class="timeline-container ps-2" id="modalTimeline"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="text-gold h6 fw-bold mb-3">🏆 Partidos e Hitóricos</h5>
+                            <ul class="list-group list-group-flush bg-transparent" id="modalMatches"></ul>
+                        </div>
+                    </div>
+
+                    <!-- Datos Curiosos -->
+                    <div>
+                        <h5 class="text-gold h6 fw-bold mb-2">✨ Datos Curiosos y Récords</h5>
+                        <ul class="ps-3 mb-0" id="modalCuriosities"></ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts Bootstrap y Propios -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/jeremi.js"></script>
+</body>
+</html>
