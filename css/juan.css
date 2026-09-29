@@ -13,6 +13,7 @@
   margin: 0 auto;
   padding: 7rem 1.25rem 3rem;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* Ambient glow — simula reflectores de estadio en la noche */
@@ -144,8 +145,11 @@
 .juan-tabs {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.25rem;
+  justify-content: flex-start;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  gap: 0.5rem;
   position: sticky;
   top: 52px; /* debajo del navbar */
   z-index: 900;
@@ -153,6 +157,16 @@
   border-radius: var(--radius-md);
   margin-bottom: 2rem;
   border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.juan-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 576px) {
+  .juan-tabs {
+    justify-content: center;
+  }
 }
 
 .juan-tabs__link {
@@ -619,9 +633,18 @@
 }
 
 /* ---- Responsive ---- */
-@media (max-width: 480px) {
+@media (max-width: 575px) {
   .juan-match {
-    padding: 0.75rem 0.8rem;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: 1.15rem 1rem;
+  }
+
+  .juan-match__team {
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    gap: 0.6rem;
   }
 
   .juan-match__shield {
@@ -631,11 +654,11 @@
   }
 
   .juan-match__name {
-    font-size: 0.65rem;
+    font-size: 0.85rem;
   }
 
   .juan-match__score {
-    font-size: 1.45rem;
+    font-size: 1.7rem;
   }
 }
 
