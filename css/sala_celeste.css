@@ -1,37 +1,42 @@
-/* Estilos personalizados - Sala de Prensa */
-body {
-    background-color: #0b0f19 !important;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.card-news {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 1px solid #333;
+    background-color: #12161f;
 }
 
-.news-card {
-    background-color: #161d2f;
-    border: 1px solid #2a354f;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.news-card:hover {
+.card-news:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 210, 255, 0.2);
-    border-color: #0d6efd;
+    box-shadow: 0 8px 20px rgba(25, 135, 84, 0.3);
+    border-color: #198754;
 }
 
-.news-card img {
-    height: 200px;
-    object-fit: cover;
+.news-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 0.75rem;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: 600;
 }
 
-.badge-fichaje {
-    background-color: #ff4757;
+.badge-oficial {
+    background-color: #0d6efd;
+    color: #ffffff;
 }
 
-.badge-titular {
-    background-color: #2ed573;
+.badge-rueda {
+    background-color: #198754;
+    color: #ffffff;
 }
 
-.badge-ultimo-minuto {
-    background-color: #ffa502;
-    color: #000;
+.badge-entrevista {
+    background-color: #ffc107;
+    color: #000000;
+}
+
+.btn-group .btn-outline-success.active {
+    background-color: #198754;
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(25, 135, 84, 0.4);
 }

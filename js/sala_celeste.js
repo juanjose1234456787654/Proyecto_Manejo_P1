@@ -1,56 +1,90 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const newsContainer = document.getElementById('newsContainer');
-
-    // Listado inicial de noticias
+    // 1. Datos iniciales de comunicados e impresiones
     const noticias = [
         {
             id: 1,
-            titulo: "Bomba en el Mercado: Acuerdo total por el fichaje estrella del verano",
-            categoria: "Fichajes",
-            badgeClass: "badge-fichaje",
+            titulo: "Declaraciones del DT tras la clasificación a finales",
+            categoria: "rueda",
+            categoriaNombre: "Rueda de Prensa",
             fecha: "28 Sep 2026",
-            resumen: "Las negociaciones cerraron de madrugada. El traspaso supera los 80 millones de euros y firmará por 5 temporadas.",
-            imagen: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80"
+            resumen: "El estratega analizó el rendimiento táctico del equipo y destacó la solidez defensiva en los minutos decisivos.",
+            autor: "Prensa GolStats"
         },
         {
             id: 2,
-            titulo: "Gran Final de Conferencia: Definidos los clasificados tras un agónico empate",
-            categoria: "Última Hora",
-            badgeClass: "badge-ultimo-minuto",
-            fecha: "28 Sep 2026",
-            resumen: "Un gol en el minuto 94 cambió el destino del torneo. Repasa los momentos clave del encuentro.",
-            imagen: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=600&q=80"
+            titulo: "Comunicado Oficial: Reporte médico del capitán",
+            categoria: "oficial",
+            categoriaNombre: "Comunicado Oficial",
+            fecha: "27 Sep 2026",
+            resumen: "Tras las evaluaciones médicas realizadas esta mañana, se confirma un esguince leve. Su retorno estimado es de 10 días.",
+            autor: "Cuerpo Médico"
         },
         {
             id: 3,
-            titulo: "Análisis Táctico: Las claves del nuevo sistema de juego que revoluciona la liga",
-            categoria: "Titulares",
-            badgeClass: "badge-titular",
-            fecha: "27 Sep 2026",
-            resumen: "Desglosamos la presión alta y la transición rápida que está descolocando a las defensas rivales.",
-            imagen: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=600&q=80"
+            titulo: "Entrevista Exclusiva: 'El grupo está más unido que nunca'",
+            categoria: "entrevista",
+            categoriaNombre: "Entrevista",
+            fecha: "25 Sep 2026",
+            resumen: "Conversamos con el máximo goleador de la temporada sobre su racha anotadora y los objetivos colectivos.",
+            autor: "Redacción Deportes"
+        },
+        {
+            id: 4,
+            titulo: "Apertura de acreditaciones para la jornada internacional",
+            categoria: "oficial",
+            categoriaNombre: "Comunicado Oficial",
+            fecha: "24 Sep 2026",
+            resumen: "Se informa a los medios de comunicación que el proceso de acreditación para el partido de vuelta está disponible.",
+            autor: "Prensa GolStats"
         }
     ];
 
-    // Renderizar noticias en el DOM
-    function renderNoticias(lista) {
+    // 2. Elementos del DOM
+    const newsContainer = document.getElementById('newsContainer');
+    const searchInput = document.getElementById('searchInput');
+    const filterButtons = document.querySelectorAll('#filterGroup button');
+
+    let currentCategory = 'todos';
+    let currentSearchQuery = '';
+
+    // 3. Función para renderizar noticias
+    function renderNews() {
         if (!newsContainer) return;
         newsContainer.innerHTML = '';
 
-        lista.forEach(item => {
+        const filtered = noticias.filter(item => {
+            const matchesCategory = currentCategory === 'todos' || item.categoria === currentCategory;
+            const matchesSearch = item.titulo.toLowerCase().includes(currentSearchQuery.toLowerCase()) ||
+                                  item.resumen.toLowerCase().includes(currentSearchQuery.toLowerCase());
+            return matchesCategory && matchesSearch;
+        });
+
+        if (filtered.length === 0) {
+            newsContainer.innerHTML = `
+                <div class="col-12 text-center py-5">
+                    <p class="text-secondary fs-5">📂 No se encontraron comunicados o noticias con ese criterio.</p>
+                </div>
+            `;
+            return;
+        }
+
+        filtered.forEach(item => {
             const col = document.createElement('div');
-            col.className = 'col-md-6 col-lg-4';
+            col.className = 'col-md-6 col-lg-6';
+
+            let badgeClass = 'badge-oficial';
+            if (item.categoria === 'rueda') badgeClass = 'badge-rueda';
+            if (item.categoria === 'entrevista') badgeClass = 'badge-entrevista';
+
             col.innerHTML = `
-                <div class="card news-card h-100 text-light">
-                    <img src="${item.imagen}" class="card-img-top" alt="${item.titulo}">
-                    <div class="card-body d-flex flex-column">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="badge ${item.badgeClass}">${item.categoria}</span>
-                            <small class="text-secondary">${item.fecha}</small>
+                <div class="card card-news h-100 text-light p-3 position-relative rounded-3">
+                    <span class="news-badge ${badgeClass}">${item.categoriaNombre}</span>
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <small class="text-success fw-semibold">📅 ${item.fecha} | ✍️ ${item.autor}</small>
+                            <h4 class="card-title mt-2 mb-3 fw-bold">${item.titulo}</h4>
+                            <p class="card-text text-secondary">${item.resumen}</p>
                         </div>
-                        <h5 class="card-title text-info fw-bold">${item.titulo}</h5>
-                        <p class="card-text text-secondary flex-grow-1">${item.resumen}</p>
-                        <button class="btn btn-outline-info btn-sm mt-3 w-100 fw-semibold">Leer Noticia Completa</button>
                     </div>
                 </div>
             `;
@@ -58,5 +92,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    renderNoticias(noticias);
+    // Inicializar render
+    renderNews();
+
+    // 4. Evento del Buscador
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            currentSearchQuery = e.target.value.trim();
+            renderNews();
+        });
+    }
+
+    // 5. Eventos de Filtro por Categoría
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentCategory = btn.getAttribute('data-category');
+            renderNews();
+        });
+    });
 });
