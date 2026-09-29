@@ -149,4 +149,12 @@
   ========================================================== */
   renderTabla(tablaPosiciones);
 
+  /* Ocultar el indicador "Desliza" tras el primer scroll */
+  const tablaWrap = document.querySelector('.juan-tabla__wrap');
+  if (tablaWrap) {
+    tablaWrap.addEventListener('scroll', function () {
+      this.classList.add('--scrolled');
+    }, { once: true });
+  }
+
 })();
