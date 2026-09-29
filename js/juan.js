@@ -141,13 +141,60 @@
       </div>`;
   }
 
-  /* ---------- 3B. renderPartidos  → próximo commit ---------- */
+  /* ---------- 3B. MARCADOR EN VIVO ---------- */
+  function renderPartidos(data) {
+    const container = document.querySelector('#marcador-vivo .juan-card__body');
+    if (!container) return;
+
+    const cards = data
+      .map((p) => {
+        const esVivo = p.estado === 'EN VIVO';
+        const badgeClass = esVivo
+          ? 'juan-match__badge--live'
+          : 'juan-match__badge--final';
+        const dotHTML = esVivo
+          ? '<span class="juan-match__badge-dot" aria-hidden="true"></span>'
+          : '';
+
+        return `
+          <article class="juan-match glass" aria-label="${p.local.nombre} vs ${p.visitante.nombre}">
+            <!-- Equipo local -->
+            <div class="juan-match__team">
+              <span class="juan-match__shield">${p.local.escudo}</span>
+              <span class="juan-match__name">${p.local.nombre}</span>
+            </div>
+
+            <!-- Marcador central -->
+            <div class="juan-match__center">
+              <span class="juan-match__badge ${badgeClass}">
+                ${dotHTML}${p.estado}
+              </span>
+              <div class="juan-match__score">
+                <span>${p.golLocal}</span>
+                <span class="juan-match__score-sep">–</span>
+                <span>${p.golVisitante}</span>
+              </div>
+              <span class="juan-match__minute">${p.minuto}</span>
+            </div>
+
+            <!-- Equipo visitante -->
+            <div class="juan-match__team">
+              <span class="juan-match__shield">${p.visitante.escudo}</span>
+              <span class="juan-match__name">${p.visitante.nombre}</span>
+            </div>
+          </article>`;
+      })
+      .join('');
+
+    container.innerHTML = `<div class="juan-match__list">${cards}</div>`;
+  }
   /* ---------- 3C. renderGoleadores → próximo commit ---------- */
 
   /* ==========================================================
      4. INIT — llamar renders al cargar
   ========================================================== */
   renderTabla(tablaPosiciones);
+  renderPartidos(partidos);
 
   /* Ocultar el indicador "Desliza" tras el primer scroll */
   const tablaWrap = document.querySelector('.juan-tabla__wrap');
