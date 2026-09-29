@@ -81,9 +81,14 @@
   if (revealEls.length) {
     const observer = new IntersectionObserver(
       (entries) => {
+        let delay = 0;
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+            // Escalonado: +120ms por cada elemento que entra al mismo tiempo
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, delay);
+            delay += 120;
             observer.unobserve(entry.target);
           }
         });
@@ -141,13 +146,89 @@
       </div>`;
   }
 
-  /* ---------- 3B. renderPartidos  → próximo commit ---------- */
-  /* ---------- 3C. renderGoleadores → próximo commit ---------- */
+  /* ---------- 3B. MARCADOR EN VIVO ---------- */
+  function renderPartidos(data) {
+    const container = document.querySelector('#marcador-vivo .juan-card__body');
+    if (!container) return;
+
+    const cards = data
+      .map((p) => {
+        const esVivo = p.estado === 'EN VIVO';
+        const badgeClass = esVivo
+          ? 'juan-match__badge--live'
+          : 'juan-match__badge--final';
+        const dotHTML = esVivo
+          ? '<span class="juan-match__badge-dot" aria-hidden="true"></span>'
+          : '';
+
+        return `
+          <article class="juan-match glass" aria-label="${p.local.nombre} vs ${p.visitante.nombre}">
+            <!-- Equipo local -->
+            <div class="juan-match__team">
+              <span class="juan-match__shield">${p.local.escudo}</span>
+              <span class="juan-match__name">${p.local.nombre}</span>
+            </div>
+
+            <!-- Marcador central -->
+            <div class="juan-match__center">
+              <span class="juan-match__badge ${badgeClass}">
+                ${dotHTML}${p.estado}
+              </span>
+              <div class="juan-match__score">
+                <span data-match-id="${p.id}" data-side="local">${p.golLocal}</span>
+                <span class="juan-match__score-sep">–</span>
+                <span data-match-id="${p.id}" data-side="visitante">${p.golVisitante}</span>
+              </div>
+              <span class="juan-match__minute">${p.minuto}</span>
+            </div>
+
+            <!-- Equipo visitante -->
+            <div class="juan-match__team">
+              <span class="juan-match__shield">${p.visitante.escudo}</span>
+              <span class="juan-match__name">${p.visitante.nombre}</span>
+            </div>
+          </article>`;
+      })
+      .join('');
+
+    container.innerHTML = `<div class="juan-match__list">${cards}</div>`;
+  }
+  /* ---------- 3C. GOLEADORES ---------- */
+  function renderGoleadores(data) {
+    const container = document.querySelector('#goleadores .juan-card__body');
+    if (!container) return;
+
+    const items = data
+      .map((g) => {
+        const esTop = g.rank === 1 ? ' juan-scorer--top' : '';
+        const maxGoles = data[0].goles;
+        const pct = Math.round((g.goles / maxGoles) * 100);
+
+        return `
+          <div class="juan-scorer${esTop}">
+            <span class="juan-scorer__rank">${g.rank}</span>
+            <span class="juan-scorer__shield">${g.escudo}</span>
+            <div class="juan-scorer__info">
+              <span class="juan-scorer__name">${g.nombre}</span>
+              <span class="juan-scorer__team">${g.equipo}</span>
+              <div class="juan-scorer__bar" aria-hidden="true">
+                <div class="juan-scorer__bar-fill" style="width:${pct}%"></div>
+              </div>
+            </div>
+            <span class="juan-scorer__goals">${g.goles}</span>
+          </div>`;
+      })
+      .join('');
+
+    container.innerHTML = `<div class="juan-scorer__list">${items}</div>`;
+  }
 
   /* ==========================================================
      4. INIT — llamar renders al cargar
   ========================================================== */
   renderTabla(tablaPosiciones);
+  renderPartidos(partidos);
+  renderGoleadores(goleadores);
 
   /* Ocultar el indicador "Desliza" tras el primer scroll */
   const tablaWrap = document.querySelector('.juan-tabla__wrap');
@@ -155,6 +236,84 @@
     tablaWrap.addEventListener('scroll', function () {
       this.classList.add('--scrolled');
     }, { once: true });
+  }
+
+  /* ==========================================================
+     5. SIMULACIÓN EN TIEMPO REAL
+     ----------------------------------------------------------
+     Cada 8 s, un partido EN VIVO recibe +1 gol aleatorio.
+     Se pausa con Page Visibility API y se desactiva
+     completamente con prefers-reduced-motion.
+  ========================================================== */
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let simInterval = null;
+
+  function simularGol() {
+    // Filtrar solo los partidos en vivo
+    const enVivo = partidos.filter((p) => p.estado === 'EN VIVO');
+    if (!enVivo.length) return;
+
+    // Elegir partido y lado al azar
+    const partido = enVivo[Math.floor(Math.random() * enVivo.length)];
+    const lado = Math.random() < 0.5 ? 'local' : 'visitante';
+
+    // Actualizar datos
+    if (lado === 'local') {
+      partido.golLocal += 1;
+    } else {
+      partido.golVisitante += 1;
+    }
+
+    // Buscar el <span> correcto en el DOM
+    const selector = `[data-match-id="${partido.id}"][data-side="${lado}"]`;
+    const span = document.querySelector(selector);
+    if (!span) return;
+
+    // Actualizar texto
+    const nuevoVal = lado === 'local' ? partido.golLocal : partido.golVisitante;
+    span.textContent = nuevoVal;
+
+    // Animación de destello (solo si motion OK)
+    if (!prefersReducedMotion.matches) {
+      span.classList.add('juan-match__score--flash');
+      span.addEventListener('animationend', function handler() {
+        span.classList.remove('juan-match__score--flash');
+        span.removeEventListener('animationend', handler);
+      });
+    }
+  }
+
+  function iniciarSimulacion() {
+    if (simInterval) return;
+    simInterval = setInterval(simularGol, 8000);
+  }
+
+  function pausarSimulacion() {
+    clearInterval(simInterval);
+    simInterval = null;
+  }
+
+  // Solo iniciar si el usuario no prefiere reduced motion
+  if (!prefersReducedMotion.matches) {
+    iniciarSimulacion();
+
+    // Page Visibility API — pausar cuando la pestaña está oculta
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        pausarSimulacion();
+      } else {
+        iniciarSimulacion();
+      }
+    });
+
+    // Escuchar cambios dinámicos de prefers-reduced-motion
+    prefersReducedMotion.addEventListener('change', function (e) {
+      if (e.matches) {
+        pausarSimulacion();
+      } else {
+        iniciarSimulacion();
+      }
+    });
   }
 
 })();
