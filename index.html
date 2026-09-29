@@ -5,26 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO -->
-  <title>GolStats | El Hub Definitivo del Fútbol</title>
-  <meta name="description" content="GolStats: estadísticas en vivo, leyendas del fútbol, táctica interactiva, noticias, zona de hinchas y los estadios más icónicos del mundo. Todo el fútbol en un solo lugar.">
-  <meta name="keywords" content="fútbol, estadísticas, leyendas, tácticas, estadios, noticias deportivas">
-  <meta name="author" content="GolStats — Proyecto Académico UTA">
-  <meta name="theme-color" content="#030509">
+  <title>GolStats | El Hub Definitivo del Futbol</title>
+  <meta name="description" content="GolStats: estadisticas en vivo, leyendas del futbol, tactica interactiva, noticias, zona de hinchas y los estadios mas iconicos del mundo. Todo el futbol en un solo lugar.">
+  <meta name="keywords" content="futbol, estadisticas, leyendas, tacticas, estadios, noticias deportivas">
+  <meta name="author" content="GolStats - Proyecto Academico UTA">
+  <meta name="theme-color" content="#f0f5fa">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="GolStats | El Hub Definitivo del Fútbol">
-  <meta property="og:description" content="Estadísticas, leyendas, táctica, noticias y más. El universo del fútbol en un solo lugar.">
+  <meta property="og:title" content="GolStats | El Hub Definitivo del Futbol">
+  <meta property="og:description" content="Estadisticas, leyendas, tactica, noticias y mas. El universo del futbol en un solo lugar.">
   <meta property="og:type" content="website">
 
-  <!-- Favicon emoji fallback -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+  <!-- Favicon SVG dinamico -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230284c7' stroke-width='2'><circle cx='12' cy='12' r='10'/><path d='M12 2a10 10 0 0 1 6.35 2.3L14 8H10L5.65 4.3A10 10 0 0 1 12 2z'/></svg>">
 
-  <!-- Google Fonts: Oswald (títulos) + Montserrat (cuerpo) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <!-- Bootstrap 5 CSS (CDN) -->
+  <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Estilos del proyecto -->
@@ -33,26 +33,32 @@
 </head>
 <body>
 
-  <!-- ============ CURSOR GLOW (desktop) ============ -->
+  <!-- ============ CURSOR GLOW ============ -->
   <div class="cursor-glow" id="cursorGlow"></div>
 
   <!-- ============ NAVBAR ============ -->
   <nav class="navbar" id="mainNav">
     <a href="#" class="nav-logo">
-      <span class="nav-logo-icon">⚽</span>
+      <!-- Icono SVG balon -->
+      <span class="nav-logo-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 2a10 10 0 0 1 6.35 2.3L14 8H10L5.65 4.3A10 10 0 0 1 12 2z"/>
+          <path d="M2 12h4l2 4-3 3.5A10 10 0 0 1 2 12z"/>
+          <path d="M22 12a10 10 0 0 1-3 7.5L16 16l2-4h4z"/>
+        </svg>
+      </span>
       GolStats
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#explorar">Explorar</a></li>
       <li><a href="#stats">Stats</a></li>
-      <li><a href="pages/leyendas.html">Leyendas</a></li>
-      <li><a href="pages/sala-prensa.html">Noticias</a></li>
-      <li><a href="#contacto" class="btn-neon nav-cta">Únete</a></li>
+      <li><a href="pages/toasa.html">Leyendas</a></li>
+      <li><a href="pages/celeste.html">Noticias</a></li>
+      <li><a href="#contacto" class="btn-neon nav-cta">Unete</a></li>
     </ul>
-    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
-      <span></span>
-      <span></span>
-      <span></span>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
     </button>
   </nav>
 
@@ -68,10 +74,10 @@
       </div>
 
       <h1 class="hero-title">GOLSTATS</h1>
-      <p class="hero-tagline">El Hub Definitivo del Fútbol</p>
+      <p class="hero-tagline">El Hub Definitivo del Futbol</p>
       <p class="hero-subtitle">
-        Estadísticas en tiempo real, leyendas inmortales, tácticas interactivas,
-        noticias de último minuto y los templos más icónicos del deporte rey.
+        Estadisticas en tiempo real, leyendas inmortales, tacticas interactivas,
+        noticias de ultimo minuto y los templos mas iconicos del deporte rey.
       </p>
 
       <div class="hero-actions">
@@ -80,14 +86,14 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <a href="#stats" class="btn-ghost">
-          Ver Estadísticas
+          Ver Estadisticas
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
         </a>
       </div>
     </div>
 
     <div class="hero-scroll">
-      <span>Descubre más</span>
+      <span>Descubre mas</span>
       <div class="scroll-indicator"></div>
     </div>
   </section>
@@ -109,7 +115,7 @@
       </div>
       <div class="stat-item reveal">
         <span class="stat-number" data-target="99">0</span>
-        <span class="stat-label">Países</span>
+        <span class="stat-label">Paises</span>
       </div>
     </div>
   </section>
@@ -118,7 +124,7 @@
   <section class="cards-section" id="explorar">
     <div class="section-heading reveal">
       <h2>Elige tu experiencia</h2>
-      <p>Seis dimensiones del fútbol mundial al alcance de un clic</p>
+      <p>Seis dimensiones del futbol mundial al alcance de un clic</p>
       <span class="heading-accent"></span>
     </div>
 
@@ -128,23 +134,34 @@
         <a href="pages/juan.html" class="card-hub d-block reveal" style="transition-delay:0.05s" id="card-estadisticas">
           <div class="card-hub-border"></div>
           <span class="card-badge">En vivo</span>
-          <span class="card-icon">⚡</span>
-          <h3>Estadísticas en Vivo</h3>
+          <span class="card-icon" aria-hidden="true">
+            <!-- Icono: onda/actividad en vivo -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </span>
+          <h3>Estadisticas en Vivo</h3>
           <p>Tabla de posiciones, resultados, goleadores y marcador en tiempo real de las principales ligas del mundo.</p>
           <span class="card-dev">Desarrollado por: Juan</span>
-          <span class="card-cta">Entrar <span class="card-cta-arrow">→</span></span>
+          <span class="card-cta">Entrar <span class="card-cta-arrow">&#8594;</span></span>
         </a>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
         <a href="pages/toasa.html" class="card-hub d-block reveal" style="transition-delay:0.1s" id="card-leyendas">
           <div class="card-hub-border"></div>
-          <span class="card-badge">Colección</span>
-          <span class="card-icon">👑</span>
+          <span class="card-badge">Coleccion</span>
+          <span class="card-icon" aria-hidden="true">
+            <!-- Icono: corona/leyenda -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 20h20"/>
+              <path d="M2 20l3-10 4 6 3-8 3 8 4-6 3 10"/>
+            </svg>
+          </span>
           <h3>Museo de Leyendas</h3>
-          <p>Descubre a los jugadores más icónicos de la historia con tarjetas de estadísticas coleccionables y biografías.</p>
+          <p>Descubre a los jugadores mas iconicos de la historia con tarjetas de estadisticas coleccionables y biografias.</p>
           <span class="card-dev">Desarrollado por: Toasa</span>
-          <span class="card-cta">Entrar <span class="card-cta-arrow">→</span></span>
+          <span class="card-cta">Entrar <span class="card-cta-arrow">&#8594;</span></span>
         </a>
       </div>
 
@@ -152,11 +169,19 @@
         <a href="pages/anahi.html" class="card-hub d-block reveal" style="transition-delay:0.15s" id="card-tactica">
           <div class="card-hub-border"></div>
           <span class="card-badge">Interactivo</span>
-          <span class="card-icon">🧠</span>
-          <h3>Pizarra Táctica</h3>
-          <p>Formaciones, esquemas de juego y análisis táctico sobre una cancha interactiva con drag &amp; drop.</p>
+          <span class="card-icon" aria-hidden="true">
+            <!-- Icono: cerebro/tactica -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="9" cy="9" r="2"/>
+              <circle cx="15" cy="15" r="2"/>
+              <path d="M9 15l6-6"/>
+            </svg>
+          </span>
+          <h3>Pizarra Tactica</h3>
+          <p>Formaciones, esquemas de juego y analisis tactico sobre una cancha interactiva con drag &amp; drop.</p>
           <span class="card-dev">Desarrollado por: Anahi</span>
-          <span class="card-cta">Entrar <span class="card-cta-arrow">→</span></span>
+          <span class="card-cta">Entrar <span class="card-cta-arrow">&#8594;</span></span>
         </a>
       </div>
 
@@ -164,11 +189,17 @@
         <a href="pages/celeste.html" class="card-hub d-block reveal" style="transition-delay:0.2s" id="card-prensa">
           <div class="card-hub-border"></div>
           <span class="card-badge">Noticias</span>
-          <span class="card-icon">📰</span>
+          <span class="card-icon" aria-hidden="true">
+            <!-- Icono: periodico/noticias -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+              <path d="M18 14h-8M15 18h-5M10 6h8v4h-8z"/>
+            </svg>
+          </span>
           <h3>Sala de Prensa</h3>
-          <p>Noticias de último minuto, rumores de fichajes y los titulares más destacados del mundo del fútbol.</p>
+          <p>Noticias de ultimo minuto, rumores de fichajes y los titulares mas destacados del mundo del futbol.</p>
           <span class="card-dev">Desarrollado por: Celeste</span>
-          <span class="card-cta">Entrar <span class="card-cta-arrow">→</span></span>
+          <span class="card-cta">Entrar <span class="card-cta-arrow">&#8594;</span></span>
         </a>
       </div>
 
@@ -176,23 +207,40 @@
         <a href="pages/mateo.html" class="card-hub d-block reveal" style="transition-delay:0.25s" id="card-hinchas">
           <div class="card-hub-border"></div>
           <span class="card-badge">Comunidad</span>
-          <span class="card-icon">🎟️</span>
+          <span class="card-icon" aria-hidden="true">
+            <!-- Icono: gente/comunidad -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </span>
           <h3>Zona de Hinchas</h3>
-          <p>Regístrate a la newsletter, participa en encuestas y comparte tu pasión por el fútbol con la comunidad.</p>
+          <p>Registrate a la newsletter, participa en encuestas y comparte tu pasion por el futbol con la comunidad.</p>
           <span class="card-dev">Desarrollado por: Mateo</span>
-          <span class="card-cta">Entrar <span class="card-cta-arrow">→</span></span>
+          <span class="card-cta">Entrar <span class="card-cta-arrow">&#8594;</span></span>
         </a>
       </div>
 
       <div class="col-12 col-md-6 col-lg-4">
         <a href="pages/jeremi.html" class="card-hub d-block reveal" style="transition-delay:0.3s" id="card-estadios">
           <div class="card-hub-border"></div>
-          <span class="card-badge">Galería</span>
-          <span class="card-icon">🏟️</span>
+          <span class="card-badge">Galeria</span>
+          <span class="card-icon" aria-hidden="true">
+            <!-- Icono: estadio/edificio -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18"/>
+              <path d="M5 21V7l7-4 7 4v14"/>
+              <path d="M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"/>
+              <rect x="9" y="9" width="2" height="3"/>
+              <rect x="13" y="9" width="2" height="3"/>
+            </svg>
+          </span>
           <h3>Estadios Legendarios</h3>
-          <p>Galería inmersiva y comparador de los templos del fútbol más espectaculares del planeta.</p>
+          <p>Galeria inmersiva y comparador de los templos del futbol mas espectaculares del planeta.</p>
           <span class="card-dev">Desarrollado por: Jeremi</span>
-          <span class="card-cta">Entrar <span class="card-cta-arrow">→</span></span>
+          <span class="card-cta">Entrar <span class="card-cta-arrow">&#8594;</span></span>
         </a>
       </div>
 
@@ -202,13 +250,13 @@
   <!-- ============ CTA SECTION ============ -->
   <section class="cta-section reveal" id="contacto">
     <div class="cta-content">
-      <h2>¿Listo para vivir el fútbol?</h2>
+      <h2>Listo para vivir el futbol?</h2>
       <p>
-        Únete a miles de aficionados que ya disfrutan de la experiencia GolStats.
-        Estadísticas, historia y pasión sin límites.
+        Unete a miles de aficionados que ya disfrutan de la experiencia GolStats.
+        Estadisticas, historia y pasion sin limites.
       </p>
       <a href="pages/mateo.html" class="btn-neon">
-        Únete Ahora
+        Unete Ahora
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -218,63 +266,68 @@
   <footer class="site-footer">
     <div class="footer-content">
       <div class="footer-brand">
-        <span class="footer-brand-name">⚽ GolStats</span>
-        <p>El universo del fútbol en un solo lugar. Estadísticas, leyendas, táctica, noticias y más.</p>
+        <span class="footer-brand-name">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" aria-hidden="true" style="vertical-align:middle;margin-right:6px"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 6.35 2.3L14 8H10L5.65 4.3A10 10 0 0 1 12 2z"/></svg>
+          GolStats
+        </span>
+        <p>El universo del futbol en un solo lugar. Estadisticas, leyendas, tactica, noticias y mas.</p>
         <div class="footer-socials">
-          <a href="#" class="footer-social-link" aria-label="Twitter">𝕏</a>
-          <a href="#" class="footer-social-link" aria-label="Instagram">📷</a>
-          <a href="#" class="footer-social-link" aria-label="YouTube">▶</a>
-          <a href="#" class="footer-social-link" aria-label="TikTok">♪</a>
+          <!-- Icono X (Twitter) -->
+          <a href="#" class="footer-social-link" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 4l16 16M4 20L20 4"/></svg>
+          </a>
+          <!-- Icono camara (Instagram) -->
+          <a href="#" class="footer-social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <!-- Icono play (YouTube) -->
+          <a href="#" class="footer-social-link" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </a>
+          <!-- Icono musica (TikTok) -->
+          <a href="#" class="footer-social-link" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          </a>
         </div>
       </div>
 
       <div class="footer-column">
         <h4>Secciones</h4>
         <ul>
-          <li><a href="pages/estadisticas.html">Estadísticas</a></li>
-          <li><a href="pages/leyendas.html">Leyendas</a></li>
-          <li><a href="pages/pizarra-tactica.html">Pizarra Táctica</a></li>
+          <li><a href="pages/juan.html">Estadisticas</a></li>
+          <li><a href="pages/toasa.html">Leyendas</a></li>
+          <li><a href="pages/anahi.html">Pizarra Tactica</a></li>
         </ul>
       </div>
 
       <div class="footer-column">
-        <h4>Más</h4>
+        <h4>Mas</h4>
         <ul>
-          <li><a href="pages/sala-prensa.html">Sala de Prensa</a></li>
-          <li><a href="pages/zona-hinchas.html">Zona de Hinchas</a></li>
-          <li><a href="pages/estadios.html">Estadios</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-column">
-        <h4>Proyecto</h4>
-        <ul>
-          <li><a href="#">Acerca de</a></li>
-          <li><a href="#">Equipo</a></li>
-          <li><a href="#">Contacto</a></li>
+          <li><a href="pages/celeste.html">Sala de Prensa</a></li>
+          <li><a href="pages/mateo.html">Zona de Hinchas</a></li>
+          <li><a href="pages/jeremi.html">Estadios</a></li>
         </ul>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <span class="footer-copy">&copy; 2026 GolStats — Proyecto académico UTA. Manejo y Configuración de Software.</span>
-      <span class="footer-credits">Hecho con 💜 y mucho ⚽</span>
+      <span class="footer-copy">&copy; 2026 GolStats &mdash; Proyecto academico UTA. Manejo y Configuracion de Software.</span>
+      <span class="footer-credits">Hecho con pasion y dedicacion</span>
     </div>
   </footer>
 
-  <!-- Bootstrap JS Bundle (CDN) -->
+  <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Navbar: scroll, toggle, smooth-scroll -->
+  <!-- Navbar -->
   <script defer src="js/navbar.js"></script>
 
   <script>
   /* ============================================================
-     GOLSTATS — JavaScript Premium
+     GOLSTATS - JavaScript (sin cambios funcionales)
   ============================================================= */
 
-
-  // ---------- CURSOR GLOW (desktop only) ----------
+  // ---------- CURSOR GLOW ----------
   const cursorGlow = document.getElementById('cursorGlow');
   if (window.matchMedia('(pointer: fine)').matches) {
     document.addEventListener('mousemove', e => {
@@ -330,9 +383,7 @@
           const progress = Math.min(elapsed / duration, 1);
           const easedProgress = easeOutExpo(progress);
           const currentValue = Math.floor(easedProgress * target);
-
           el.textContent = currentValue.toLocaleString('es-ES');
-
           if (progress < 1) {
             requestAnimationFrame(updateCounter);
           } else {
@@ -369,8 +420,8 @@
         size: Math.random() * 2 + 0.5,
         speedX: (Math.random() - 0.5) * 0.4,
         speedY: (Math.random() - 0.5) * 0.4,
-        opacity: Math.random() * 0.5 + 0.1,
-        hue: Math.random() > 0.5 ? 270 : 188  // purple or cyan
+        opacity: Math.random() * 0.4 + 0.05,
+        hue: Math.random() > 0.5 ? 200 : 210
       };
     }
 
@@ -387,21 +438,18 @@
       particles.forEach(p => {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${p.hue}, 80%, 60%, ${p.opacity})`;
+        ctx.fillStyle = `hsla(${p.hue}, 70%, 50%, ${p.opacity})`;
         ctx.fill();
 
-        // Move
         p.x += p.speedX;
         p.y += p.speedY;
 
-        // Wrap around
         if (p.x < 0) p.x = canvas.width;
         if (p.x > canvas.width) p.x = 0;
         if (p.y < 0) p.y = canvas.height;
         if (p.y > canvas.height) p.y = 0;
       });
 
-      // Draw lines between close particles
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -412,7 +460,7 @@
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(124, 58, 237, ${0.06 * (1 - dist / 150)})`;
+            ctx.strokeStyle = `rgba(14, 165, 233, ${0.06 * (1 - dist / 150)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -422,7 +470,6 @@
       animId = requestAnimationFrame(drawParticles);
     }
 
-    // Only animate when hero is visible
     const heroObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -442,8 +489,6 @@
     initParticles();
     heroObserver.observe(document.getElementById('hero'));
   }
-
-
   </script>
 
 </body>

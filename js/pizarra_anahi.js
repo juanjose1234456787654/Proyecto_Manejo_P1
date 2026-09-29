@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Obtención de elementos del DOM
+    // 1. Obtencion de elementos del DOM
     const canvas = document.getElementById('pizarraCanvas');
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
 
     const btnPencil = document.getElementById('btnPencil');
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnThemeNeon = document.getElementById('btnThemeNeon');
     const btnThemeWood = document.getElementById('btnThemeWood');
 
-    // Sellos Tácticos
+    // Sellos Tacticos
     const btnStampBall = document.getElementById('btnStampBall');
     const btnStampCone = document.getElementById('btnStampCone');
     const btnStampArrow = document.getElementById('btnStampArrow');
@@ -34,14 +35,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let isDrawing = false;
     let mode = 'pencil';
     let currentStamp = null;
-    let color = colorPicker ? colorPicker.value : '#00ffcc';
+    let color = colorPicker ? colorPicker.value : '#0ea5e9';
     let currentLineWidth = lineWidthInput ? lineWidthInput.value : 3;
 
-    // Configuración de temas visuales
+    // Configuracion de temas visuales
     const themes = {
-        grass: { bg: '#2e7d32', line: 'rgba(255, 255, 255, 0.75)' },
-        neon: { bg: '#081a0e', line: '#00ff88' },
-        wood: { bg: '#8c4a19', line: 'rgba(255, 255, 255, 0.85)' }
+        grass: { bg: '#15803d', line: 'rgba(255, 255, 255, 0.85)' },
+        neon: { bg: '#091e28', line: '#00ffcc' },
+        wood: { bg: '#854d0e', line: 'rgba(255, 255, 255, 0.90)' }
     };
     let currentTheme = 'grass';
 
@@ -55,23 +56,33 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.strokeStyle = theme.line;
         ctx.lineWidth = 3;
 
-        // Línea exterior
+        // Linea exterior
         ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
 
-        // Línea media
+        // Linea media
         ctx.beginPath();
         ctx.moveTo(canvas.width / 2, 20);
         ctx.lineTo(canvas.width / 2, canvas.height - 20);
         ctx.stroke();
 
-        // Círculo central
+        // Circulo central
         ctx.beginPath();
         ctx.arc(canvas.width / 2, canvas.height / 2, 60, 0, Math.PI * 2);
         ctx.stroke();
 
-        // Áreas grandes
+        // Punto central
+        ctx.beginPath();
+        ctx.arc(canvas.width / 2, canvas.height / 2, 4, 0, Math.PI * 2);
+        ctx.fillStyle = theme.line;
+        ctx.fill();
+
+        // Areas grandes
         ctx.strokeRect(20, canvas.height / 2 - 100, 120, 200);
         ctx.strokeRect(canvas.width - 140, canvas.height / 2 - 100, 120, 200);
+
+        // Areas chicas
+        ctx.strokeRect(20, canvas.height / 2 - 50, 50, 100);
+        ctx.strokeRect(canvas.width - 70, canvas.height / 2 - 50, 50, 100);
     }
 
     // Inicializar cancha
@@ -91,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnThemeNeon) btnThemeNeon.addEventListener('click', () => setActiveTheme(btnThemeNeon, 'neon'));
     if (btnThemeWood) btnThemeWood.addEventListener('click', () => setActiveTheme(btnThemeWood, 'wood'));
 
-    // 4. Dibujar Sellos Tácticos
+    // 4. Dibujar Sellos Tacticos
     function dibujarPelota(x, y) {
         ctx.save();
         ctx.beginPath();
@@ -99,10 +110,10 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillStyle = '#ffffff';
         ctx.fill();
         ctx.lineWidth = 2;
-        ctx.strokeStyle = '#000000';
+        ctx.strokeStyle = '#0f172a';
         ctx.stroke();
 
-        ctx.fillStyle = '#000000';
+        ctx.fillStyle = '#0f172a';
         ctx.beginPath();
         ctx.arc(x, y, 4, 0, Math.PI * 2);
         ctx.fill();
@@ -116,9 +127,9 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.lineTo(x - 10, y + 10);
         ctx.lineTo(x + 10, y + 10);
         ctx.closePath();
-        ctx.fillStyle = '#ff6b00';
+        ctx.fillStyle = '#f97316';
         ctx.fill();
-        ctx.lineWidth = 1;
+        ctx.lineWidth = 1.5;
         ctx.strokeStyle = '#ffffff';
         ctx.stroke();
         ctx.restore();
@@ -157,12 +168,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnStampCone) btnStampCone.addEventListener('click', () => setStampMode(btnStampCone, 'cone'));
     if (btnStampArrow) btnStampArrow.addEventListener('click', () => setStampMode(btnStampArrow, 'arrow'));
 
-    // 5. Módulo LocalStorage para Guardar y Cargar Tácticas
+    // 5. Modulo LocalStorage para Guardar y Cargar Tacticas
     const STORAGE_PREFIX = 'golstats_tactic_';
 
     function updateTacticsDropdown() {
         if (!savedTacticsSelect) return;
-        savedTacticsSelect.innerHTML = '<option value="">📂 Cargar...</option>';
+        savedTacticsSelect.innerHTML = '<option value="">-- Cargar jugada --</option>';
         
         for (let i = 0; i < localStorage.length; i++) {
             const key = localStorage.key(i);
@@ -176,14 +187,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Inicializar desplegable de tácticas guardadas
+    // Inicializar desplegable de tacticas guardadas
     updateTacticsDropdown();
 
     if (btnSaveTactic) {
         btnSaveTactic.addEventListener('click', () => {
             const name = tacticNameInput ? tacticNameInput.value.trim() : '';
             if (!name) {
-                alert('Por favor, ingresa un nombre para guardar tu jugada táctica.');
+                alert('Por favor, ingresa un nombre para guardar tu jugada tactica.');
                 return;
             }
 
@@ -191,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem(STORAGE_PREFIX + name, dataUrl);
             if (tacticNameInput) tacticNameInput.value = '';
             updateTacticsDropdown();
-            alert(`¡Jugada "${name}" guardada con éxito en LocalStorage!`);
+            alert(`¡Jugada "${name}" guardada con exito!`);
         });
     }
 
@@ -224,18 +235,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const name = selectedKey.replace(STORAGE_PREFIX, '');
-            if (confirm(`¿Estás seguro de eliminar la jugada "${name}"?`)) {
+            if (confirm(`¿Estas seguro de eliminar la jugada "${name}"?`)) {
                 localStorage.removeItem(selectedKey);
                 updateTacticsDropdown();
             }
         });
     }
 
-    // 6. Lógica de interacción Canvas
+    // 6. Logica de interaccion Canvas
     canvas.addEventListener('mousedown', (e) => {
         const rect = canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        const x = (e.clientX - rect.left) * scaleX;
+        const y = (e.clientY - rect.top) * scaleY;
 
         if (mode === 'stamp') {
             if (currentStamp === 'ball') dibujarPelota(x, y);
@@ -252,18 +265,21 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.addEventListener('mousemove', (e) => {
         if (!isDrawing || mode === 'stamp') return;
         const rect = canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        const x = (e.clientX - rect.left) * scaleX;
+        const y = (e.clientY - rect.top) * scaleY;
 
-        ctx.lineWidth = mode === 'eraser' ? 20 : currentLineWidth;
+        ctx.lineWidth = mode === 'eraser' ? 24 : currentLineWidth;
         ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
 
         if (mode === 'pencil') {
             ctx.strokeStyle = color;
             ctx.lineTo(x, y);
             ctx.stroke();
         } else {
-            ctx.clearRect(x - 10, y - 10, 20, 20);
+            ctx.clearRect(x - 12, y - 12, 24, 24);
             drawField();
         }
     });
@@ -295,6 +311,8 @@ document.addEventListener('DOMContentLoaded', () => {
         btnPencil.addEventListener('click', () => {
             mode = 'pencil';
             clearStampActive();
+            if (btnEraser) btnEraser.classList.remove('active');
+            btnPencil.classList.add('active');
         });
     }
 
@@ -302,24 +320,26 @@ document.addEventListener('DOMContentLoaded', () => {
         btnEraser.addEventListener('click', () => {
             mode = 'eraser';
             clearStampActive();
+            if (btnPencil) btnPencil.classList.remove('active');
+            btnEraser.classList.add('active');
         });
     }
 
     if (btnClear) btnClear.addEventListener('click', () => drawField());
 
     // 8. Jugadores y Formaciones
-    function dibujarJugador(x, y, numero, colorJugador = '#ff4757') {
+    function dibujarJugador(x, y, numero, colorJugador = '#0284c7') {
         ctx.save();
         ctx.beginPath();
         ctx.arc(x, y, 16, 0, Math.PI * 2);
         ctx.fillStyle = colorJugador;
         ctx.fill();
-        ctx.lineWidth = 2;
+        ctx.lineWidth = 2.5;
         ctx.strokeStyle = '#ffffff';
         ctx.stroke();
 
         ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 12px Arial';
+        ctx.font = 'bold 12px Montserrat, sans-serif';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(numero, x, y);
@@ -330,7 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn442.addEventListener('click', () => {
             const w = canvas.width;
             const h = canvas.height;
-            dibujarJugador(w * 0.08, h * 0.5, '1', '#eccc68');
+            dibujarJugador(w * 0.08, h * 0.5, '1', '#f59e0b');
             dibujarJugador(w * 0.25, h * 0.18, '4');
             dibujarJugador(w * 0.25, h * 0.39, '2');
             dibujarJugador(w * 0.25, h * 0.61, '6');
@@ -348,7 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn433.addEventListener('click', () => {
             const w = canvas.width;
             const h = canvas.height;
-            dibujarJugador(w * 0.08, h * 0.5, '1', '#eccc68');
+            dibujarJugador(w * 0.08, h * 0.5, '1', '#f59e0b');
             dibujarJugador(w * 0.25, h * 0.18, '4');
             dibujarJugador(w * 0.25, h * 0.39, '2');
             dibujarJugador(w * 0.25, h * 0.61, '6');

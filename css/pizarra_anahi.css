@@ -1,37 +1,366 @@
-.field-container {
-    max-width: 800px;
-    background-color: #0b0f19;
-    box-shadow: 0 0 25px rgba(0, 255, 136, 0.2);
-    overflow: hidden;
-    margin: 0 auto;
-    border-radius: 8px;
+/* ============================================================
+   PIZARRA_ANAHI.CSS — Estilos de la Pizarra Tecnica Tactica | GolStats
+   Paleta: Blanco / Grises / Celestes / Verdes Esmeralda
+   Diseno moderno sin emojis, con soporte SVG y controles limpios
+============================================================= */
+
+:root {
+  --p-sky:        #0ea5e9;
+  --p-sky-d:      #0284c7;
+  --p-green:      #10b981;
+  --p-green-d:    #059669;
+  --p-slate9:     #0f172a;
+  --p-slate8:     #1e293b;
+  --p-slate7:     #334155;
+  --p-slate5:     #64748b;
+  --p-slate3:     #cbd5e1;
+  --p-slate2:     #e2e8f0;
+  --p-slate1:     #f8fafc;
+  --p-bg:         #f0f5fa;
+  --p-white:      #ffffff;
+  --p-shadow:     0 4px 18px rgba(15, 23, 42, 0.06), 0 2px 6px rgba(15, 23, 42, 0.04);
+  --p-shadow-h:   0 10px 28px rgba(14, 165, 233, 0.14), 0 4px 12px rgba(15, 23, 42, 0.06);
 }
 
-#pizarraCanvas {
-    width: 100%;
-    height: auto;
-    cursor: crosshair;
-    display: block;
+body {
+  background-color: var(--p-bg) !important;
+  color: var(--p-slate9) !important;
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+}
+
+/* ==================== NAVBAR ==================== */
+.p-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+  padding: 0.85rem 1.5rem;
+}
+
+.p-nav__inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.p-nav__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--p-slate9);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.p-nav__logo:hover {
+  color: var(--p-sky-d);
+  transform: translateX(2px);
+}
+
+.p-nav__logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--p-sky), var(--p-green));
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(14, 165, 233, 0.25);
+}
+
+.p-btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--p-slate7);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1.5px solid var(--p-slate2);
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s, background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.p-btn-back:hover {
+  color: var(--p-sky-d);
+  border-color: var(--p-sky);
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.15);
+  transform: translateY(-1px);
+}
+
+/* ==================== HEADER ==================== */
+.p-header {
+  text-align: center;
+  padding: 2.5rem 1.5rem 1.5rem;
+}
+
+.p-header__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 50px;
+  padding: 0.35rem 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--p-green-d);
+  margin-bottom: 0.85rem;
+}
+
+.p-header__badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--p-green);
+  box-shadow: 0 0 8px var(--p-green);
+  animation: p-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes p-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.65); }
+}
+
+.p-header__title {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--p-slate9) 25%, var(--p-sky-d) 70%, var(--p-green-d) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.p-header__sub {
+  color: var(--p-slate5);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* ==================== TOOLBAR PANEL ==================== */
+.p-toolbar {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1.5px solid var(--p-slate2);
+  border-radius: 18px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--p-shadow);
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+}
+
+.p-group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.6rem;
+  background: var(--p-slate1);
+  border: 1px solid var(--p-slate2);
+  border-radius: 12px;
+}
+
+.p-group-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--p-slate7);
+  margin-right: 0.25rem;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+/* Tool Buttons */
+.p-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.45rem 0.85rem;
+  border: 1.5px solid var(--p-slate2);
+  background: var(--p-white);
+  color: var(--p-slate7);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.p-btn svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.p-btn:hover {
+  background: var(--p-white);
+  border-color: var(--p-sky);
+  color: var(--p-sky-d);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(14, 165, 233, 0.12);
+}
+
+.p-btn:active {
+  transform: translateY(0);
+}
+
+.p-btn.active {
+  background: linear-gradient(135deg, var(--p-sky-d), var(--p-sky)) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: 0 3px 12px rgba(14, 165, 233, 0.3) !important;
+}
+
+/* Specific button styles */
+.p-btn--green {
+  background: linear-gradient(135deg, var(--p-green-d), var(--p-green));
+  color: #ffffff;
+  border: none;
+}
+.p-btn--green:hover {
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+}
+
+.p-btn--sky {
+  background: linear-gradient(135deg, var(--p-sky-d), var(--p-sky));
+  color: #ffffff;
+  border: none;
+}
+.p-btn--sky:hover {
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.3);
+}
+
+.p-btn--danger {
+  background: #ffffff;
+  color: #ef4444;
+  border-color: #fca5a5;
+}
+.p-btn--danger:hover {
+  background: #fee2e2;
+  border-color: #ef4444;
+  color: #b91c1c;
+}
+
+.p-btn--dark {
+  background: var(--p-slate9);
+  color: #ffffff;
+  border: none;
+}
+.p-btn--dark:hover {
+  background: var(--p-slate8);
+  color: #ffffff;
+}
+
+/* Inputs within toolbar */
+.p-input-text {
+  background: #ffffff;
+  border: 1.5px solid var(--p-slate2);
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.82rem;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--p-slate9);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.p-input-text:focus {
+  border-color: var(--p-sky);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.12);
+}
+
+.p-select {
+  background: #ffffff;
+  border: 1.5px solid var(--p-slate2);
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.82rem;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--p-slate9);
+  outline: none;
+  cursor: pointer;
+}
+
+.p-select:focus {
+  border-color: var(--p-sky);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.12);
 }
 
 .form-control-color {
-    width: 45px;
-    height: 38px;
-    padding: 2px;
-    cursor: pointer;
+  width: 36px;
+  height: 32px;
+  padding: 2px;
+  border-radius: 8px;
+  border: 1.5px solid var(--p-slate2);
+  cursor: pointer;
 }
 
-/* Efectos para los botones active */
-.btn-group .btn.active {
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+/* ==================== FIELD CANVAS CONTAINER ==================== */
+.field-container {
+  max-width: 860px;
+  background-color: #0b0f19;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.16), 0 4px 12px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 20px;
+  border: 3px solid #ffffff;
+  position: relative;
 }
 
-.btn-group .btn-outline-success.active {
-    background-color: #198754;
-    color: #ffffff;
+#pizarraCanvas {
+  width: 100%;
+  height: auto;
+  cursor: crosshair;
+  display: block;
 }
 
-.btn-group .btn-outline-warning.active {
-    background-color: #ffc107;
-    color: #000000;
+/* ==================== FOOTER ==================== */
+.p-footer {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  border-top: 1px solid var(--p-slate2);
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--p-slate5);
+  font-size: 0.85rem;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 3rem;
 }
