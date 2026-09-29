@@ -21,9 +21,17 @@
     cursor: pointer;
 }
 
-/* Efectos para los botones active de temas */
+/* Efectos para los botones active */
+.btn-group .btn.active {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
 .btn-group .btn-outline-success.active {
     background-color: #198754;
     color: #ffffff;
-    box-shadow: 0 0 10px rgba(25, 135, 84, 0.5);
+}
+
+.btn-group .btn-outline-warning.active {
+    background-color: #ffc107;
+    color: #000000;
 }

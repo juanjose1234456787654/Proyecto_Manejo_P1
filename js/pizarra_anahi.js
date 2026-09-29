@@ -13,14 +13,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn433 = document.getElementById('btn433');
     const btnDownload = document.getElementById('btnDownload');
 
-    // Botones de Selector de Cancha
+    // Temas de Cancha
     const btnThemeGrass = document.getElementById('btnThemeGrass');
     const btnThemeNeon = document.getElementById('btnThemeNeon');
     const btnThemeWood = document.getElementById('btnThemeWood');
 
+    // Sellos Tácticos
+    const btnStampBall = document.getElementById('btnStampBall');
+    const btnStampCone = document.getElementById('btnStampCone');
+    const btnStampArrow = document.getElementById('btnStampArrow');
+
     // 2. Variables de estado
     let isDrawing = false;
-    let mode = 'pencil';
+    let mode = 'pencil'; // 'pencil', 'eraser', 'stamp'
+    let currentStamp = null; // 'ball', 'cone', 'arrow'
     let color = colorPicker ? colorPicker.value : '#00ffcc';
     let currentLineWidth = lineWidthInput ? lineWidthInput.value : 3;
 
@@ -36,11 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function drawField() {
         const theme = themes[currentTheme] || themes.grass;
 
-        // Fondo del terreno
         ctx.fillStyle = theme.bg;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Estilo de marcaciones
         ctx.strokeStyle = theme.line;
         ctx.lineWidth = 3;
 
@@ -68,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicializar cancha
     drawField();
 
-    // Lógica para alternar temas de cancha
+    // Cambiar temas de cancha
     function setActiveTheme(selectedBtn, themeKey) {
         [btnThemeGrass, btnThemeNeon, btnThemeWood].forEach(btn => {
             if (btn) btn.classList.remove('active');
@@ -82,16 +86,93 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnThemeNeon) btnThemeNeon.addEventListener('click', () => setActiveTheme(btnThemeNeon, 'neon'));
     if (btnThemeWood) btnThemeWood.addEventListener('click', () => setActiveTheme(btnThemeWood, 'wood'));
 
-    // 4. Lógica de dibujo interactivo
+    // 4. Dibujar Sellos Tácticos
+    function dibujarPelota(x, y) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(x, y, 10, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = '#000000';
+        ctx.stroke();
+
+        // Parches de la pelota
+        ctx.fillStyle = '#000000';
+        ctx.beginPath();
+        ctx.arc(x, y, 4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+    }
+
+    function dibujarCono(x, y) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(x, y - 14);
+        ctx.lineTo(x - 10, y + 10);
+        ctx.lineTo(x + 10, y + 10);
+        ctx.closePath();
+        ctx.fillStyle = '#ff6b00';
+        ctx.fill();
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = '#ffffff';
+        ctx.stroke();
+        ctx.restore();
+    }
+
+    function dibujarFlecha(x, y) {
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.lineWidth = 4;
+        
+        ctx.beginPath();
+        ctx.moveTo(x - 20, y);
+        ctx.lineTo(x + 15, y);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(x + 15, y - 8);
+        ctx.lineTo(x + 28, y);
+        ctx.lineTo(x + 15, y + 8);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+    }
+
+    function setStampMode(selectedBtn, stampType) {
+        [btnStampBall, btnStampCone, btnStampArrow].forEach(btn => {
+            if (btn) btn.classList.remove('active');
+        });
+        if (selectedBtn) selectedBtn.classList.add('active');
+        mode = 'stamp';
+        currentStamp = stampType;
+    }
+
+    if (btnStampBall) btnStampBall.addEventListener('click', () => setStampMode(btnStampBall, 'ball'));
+    if (btnStampCone) btnStampCone.addEventListener('click', () => setStampMode(btnStampCone, 'cone'));
+    if (btnStampArrow) btnStampArrow.addEventListener('click', () => setStampMode(btnStampArrow, 'arrow'));
+
+    // 5. Lógica de interacción en el Canvas
     canvas.addEventListener('mousedown', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        if (mode === 'stamp') {
+            if (currentStamp === 'ball') dibujarPelota(x, y);
+            if (currentStamp === 'cone') dibujarCono(x, y);
+            if (currentStamp === 'arrow') dibujarFlecha(x, y);
+            return;
+        }
+
         isDrawing = true;
         ctx.beginPath();
-        const rect = canvas.getBoundingClientRect();
-        ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+        ctx.moveTo(x, y);
     });
 
     canvas.addEventListener('mousemove', (e) => {
-        if (!isDrawing) return;
+        if (!isDrawing || mode === 'stamp') return;
         const rect = canvas.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
@@ -112,11 +193,11 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.addEventListener('mouseup', () => isDrawing = false);
     canvas.addEventListener('mouseleave', () => isDrawing = false);
 
-    // 5. Eventos de controles de dibujo
+    // 6. Controles generales
     if (colorPicker) {
         colorPicker.addEventListener('input', (e) => {
             color = e.target.value;
-            mode = 'pencil';
+            if (mode !== 'stamp') mode = 'pencil';
         });
     }
 
@@ -126,11 +207,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (btnPencil) btnPencil.addEventListener('click', () => mode = 'pencil');
-    if (btnEraser) btnEraser.addEventListener('click', () => mode = 'eraser');
+    function clearStampActive() {
+        [btnStampBall, btnStampCone, btnStampArrow].forEach(btn => {
+            if (btn) btn.classList.remove('active');
+        });
+    }
+
+    if (btnPencil) {
+        btnPencil.addEventListener('click', () => {
+            mode = 'pencil';
+            clearStampActive();
+        });
+    }
+
+    if (btnEraser) {
+        btnEraser.addEventListener('click', () => {
+            mode = 'eraser';
+            clearStampActive();
+        });
+    }
+
     if (btnClear) btnClear.addEventListener('click', () => drawField());
 
-    // 6. Función para dibujar fichas de jugadores
+    // 7. Jugadores y Formaciones Tácticas
     function dibujarJugador(x, y, numero, colorJugador = '#ff4757') {
         ctx.save();
         ctx.beginPath();
@@ -149,7 +248,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.restore();
     }
 
-    // 7. Eventos de Formaciones Tácticas Automáticas
     if (btn442) {
         btn442.addEventListener('click', () => {
             const w = canvas.width;
@@ -186,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 8. Evento para Exportar a Imagen PNG
+    // 8. Exportar PNG
     if (btnDownload) {
         btnDownload.addEventListener('click', () => {
             const link = document.createElement('a');
