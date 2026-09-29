@@ -23,14 +23,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnStampCone = document.getElementById('btnStampCone');
     const btnStampArrow = document.getElementById('btnStampArrow');
 
+    // Elementos LocalStorage
+    const tacticNameInput = document.getElementById('tacticNameInput');
+    const btnSaveTactic = document.getElementById('btnSaveTactic');
+    const savedTacticsSelect = document.getElementById('savedTacticsSelect');
+    const btnLoadTactic = document.getElementById('btnLoadTactic');
+    const btnDeleteTactic = document.getElementById('btnDeleteTactic');
+
     // 2. Variables de estado
     let isDrawing = false;
-    let mode = 'pencil'; // 'pencil', 'eraser', 'stamp'
-    let currentStamp = null; // 'ball', 'cone', 'arrow'
+    let mode = 'pencil';
+    let currentStamp = null;
     let color = colorPicker ? colorPicker.value : '#00ffcc';
     let currentLineWidth = lineWidthInput ? lineWidthInput.value : 3;
 
-    // Configuración de temas visuales de cancha
+    // Configuración de temas visuales
     const themes = {
         grass: { bg: '#2e7d32', line: 'rgba(255, 255, 255, 0.75)' },
         neon: { bg: '#081a0e', line: '#00ff88' },
@@ -38,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     let currentTheme = 'grass';
 
-    // 3. Dibujar cancha de fútbol base según el tema activo
+    // 3. Dibujar cancha base
     function drawField() {
         const theme = themes[currentTheme] || themes.grass;
 
@@ -62,17 +69,15 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.arc(canvas.width / 2, canvas.height / 2, 60, 0, Math.PI * 2);
         ctx.stroke();
 
-        // Área grande izquierda
+        // Áreas grandes
         ctx.strokeRect(20, canvas.height / 2 - 100, 120, 200);
-
-        // Área grande derecha
         ctx.strokeRect(canvas.width - 140, canvas.height / 2 - 100, 120, 200);
     }
 
     // Inicializar cancha
     drawField();
 
-    // Cambiar temas de cancha
+    // Cambiar temas
     function setActiveTheme(selectedBtn, themeKey) {
         [btnThemeGrass, btnThemeNeon, btnThemeWood].forEach(btn => {
             if (btn) btn.classList.remove('active');
@@ -97,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.strokeStyle = '#000000';
         ctx.stroke();
 
-        // Parches de la pelota
         ctx.fillStyle = '#000000';
         ctx.beginPath();
         ctx.arc(x, y, 4, 0, Math.PI * 2);
@@ -153,7 +157,81 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnStampCone) btnStampCone.addEventListener('click', () => setStampMode(btnStampCone, 'cone'));
     if (btnStampArrow) btnStampArrow.addEventListener('click', () => setStampMode(btnStampArrow, 'arrow'));
 
-    // 5. Lógica de interacción en el Canvas
+    // 5. Módulo LocalStorage para Guardar y Cargar Tácticas
+    const STORAGE_PREFIX = 'golstats_tactic_';
+
+    function updateTacticsDropdown() {
+        if (!savedTacticsSelect) return;
+        savedTacticsSelect.innerHTML = '<option value="">📂 Cargar...</option>';
+        
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key.startsWith(STORAGE_PREFIX)) {
+                const tacticName = key.replace(STORAGE_PREFIX, '');
+                const option = document.createElement('option');
+                option.value = key;
+                option.textContent = tacticName;
+                savedTacticsSelect.appendChild(option);
+            }
+        }
+    }
+
+    // Inicializar desplegable de tácticas guardadas
+    updateTacticsDropdown();
+
+    if (btnSaveTactic) {
+        btnSaveTactic.addEventListener('click', () => {
+            const name = tacticNameInput ? tacticNameInput.value.trim() : '';
+            if (!name) {
+                alert('Por favor, ingresa un nombre para guardar tu jugada táctica.');
+                return;
+            }
+
+            const dataUrl = canvas.toDataURL('image/png');
+            localStorage.setItem(STORAGE_PREFIX + name, dataUrl);
+            if (tacticNameInput) tacticNameInput.value = '';
+            updateTacticsDropdown();
+            alert(`¡Jugada "${name}" guardada con éxito en LocalStorage!`);
+        });
+    }
+
+    if (btnLoadTactic) {
+        btnLoadTactic.addEventListener('click', () => {
+            const selectedKey = savedTacticsSelect ? savedTacticsSelect.value : '';
+            if (!selectedKey) {
+                alert('Selecciona una jugada del desplegable para cargar.');
+                return;
+            }
+
+            const dataUrl = localStorage.getItem(selectedKey);
+            if (!dataUrl) return;
+
+            const img = new Image();
+            img.onload = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0);
+            };
+            img.src = dataUrl;
+        });
+    }
+
+    if (btnDeleteTactic) {
+        btnDeleteTactic.addEventListener('click', () => {
+            const selectedKey = savedTacticsSelect ? savedTacticsSelect.value : '';
+            if (!selectedKey) {
+                alert('Selecciona una jugada del desplegable para eliminar.');
+                return;
+            }
+
+            const name = selectedKey.replace(STORAGE_PREFIX, '');
+            if (confirm(`¿Estás seguro de eliminar la jugada "${name}"?`)) {
+                localStorage.removeItem(selectedKey);
+                updateTacticsDropdown();
+            }
+        });
+    }
+
+    // 6. Lógica de interacción Canvas
     canvas.addEventListener('mousedown', (e) => {
         const rect = canvas.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -193,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.addEventListener('mouseup', () => isDrawing = false);
     canvas.addEventListener('mouseleave', () => isDrawing = false);
 
-    // 6. Controles generales
+    // 7. Controles generales
     if (colorPicker) {
         colorPicker.addEventListener('input', (e) => {
             color = e.target.value;
@@ -229,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (btnClear) btnClear.addEventListener('click', () => drawField());
 
-    // 7. Jugadores y Formaciones Tácticas
+    // 8. Jugadores y Formaciones
     function dibujarJugador(x, y, numero, colorJugador = '#ff4757') {
         ctx.save();
         ctx.beginPath();
@@ -284,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 8. Exportar PNG
+    // 9. Exportar PNG
     if (btnDownload) {
         btnDownload.addEventListener('click', () => {
             const link = document.createElement('a');

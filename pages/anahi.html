@@ -29,7 +29,7 @@
             <!-- Panel de Controles Completo -->
             <div class="col-lg-12 mb-3 d-flex justify-content-center align-items-center gap-2 flex-wrap bg-dark p-3 rounded border border-secondary shadow">
                 <!-- Selector de Estilo de Cancha -->
-                <div class="d-flex align-items-center gap-1 mx-1 border-end border-secondary pe-3">
+                <div class="d-flex align-items-center gap-1 mx-1 border-end border-secondary pe-2">
                     <label class="text-white fw-semibold mb-0 me-1">Cancha:</label>
                     <div class="btn-group btn-group-sm" role="group">
                         <button type="button" id="btnThemeGrass" class="btn btn-outline-success active fw-semibold">🌱 Césped</button>
@@ -47,13 +47,13 @@
                     <input type="color" id="colorPicker" value="#00ffcc" class="form-control form-control-color bg-dark border-secondary" title="Selecciona color">
                 </div>
 
-                <div class="d-flex align-items-center gap-2 mx-1">
+                <div class="d-flex align-items-center gap-2 mx-1 border-end border-secondary pe-2">
                     <label for="lineWidth" class="text-white fw-semibold mb-0">Grosor:</label>
-                    <input type="range" id="lineWidth" min="1" max="10" value="3" class="form-range" style="width: 100px;">
+                    <input type="range" id="lineWidth" min="1" max="10" value="3" class="form-range" style="width: 80px;">
                 </div>
 
                 <!-- Sellos y Accesorios Tácticos -->
-                <div class="d-flex align-items-center gap-1 mx-1 border-start border-secondary ps-3">
+                <div class="d-flex align-items-center gap-1 mx-1 border-end border-secondary pe-2">
                     <label class="text-white fw-semibold mb-0 me-1">Accesorios:</label>
                     <div class="btn-group btn-group-sm" role="group">
                         <button type="button" id="btnStampBall" class="btn btn-outline-warning fw-semibold">⚽ Pelota</button>
@@ -62,9 +62,20 @@
                     </div>
                 </div>
 
+                <!-- Módulo LocalStorage: Guardar / Cargar Tácticas -->
+                <div class="d-flex align-items-center gap-1 mx-1 border-end border-secondary pe-2">
+                    <input type="text" id="tacticNameInput" class="form-control form-control-sm bg-black text-light border-secondary" placeholder="Nombre jugada..." style="width: 130px;">
+                    <button id="btnSaveTactic" class="btn btn-sm btn-info text-white fw-semibold">💾 Guardar</button>
+                    <select id="savedTacticsSelect" class="form-select form-select-sm bg-black text-light border-secondary" style="width: 140px;">
+                        <option value="">📂 Cargar...</option>
+                    </select>
+                    <button id="btnLoadTactic" class="btn btn-sm btn-outline-light fw-semibold">Cargar</button>
+                    <button id="btnDeleteTactic" class="btn btn-sm btn-outline-danger fw-semibold" title="Eliminar seleccionada">❌</button>
+                </div>
+
                 <!-- Formaciones Automáticas -->
-                <button id="btn442" class="btn btn-info text-white fw-semibold">⚽ Formación 4-4-2</button>
-                <button id="btn433" class="btn btn-info text-white fw-semibold">⚽ Formación 4-3-3</button>
+                <button id="btn442" class="btn btn-info text-white fw-semibold">⚽ 4-4-2</button>
+                <button id="btn433" class="btn btn-info text-white fw-semibold">⚽ 4-3-3</button>
 
                 <!-- Acciones -->
                 <button id="btnClear" class="btn btn-danger fw-semibold">🗑️ Limpiar</button>
