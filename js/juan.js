@@ -170,9 +170,9 @@
                 ${dotHTML}${p.estado}
               </span>
               <div class="juan-match__score">
-                <span>${p.golLocal}</span>
+                <span data-match-id="${p.id}" data-side="local">${p.golLocal}</span>
                 <span class="juan-match__score-sep">–</span>
-                <span>${p.golVisitante}</span>
+                <span data-match-id="${p.id}" data-side="visitante">${p.golVisitante}</span>
               </div>
               <span class="juan-match__minute">${p.minuto}</span>
             </div>
@@ -231,6 +231,84 @@
     tablaWrap.addEventListener('scroll', function () {
       this.classList.add('--scrolled');
     }, { once: true });
+  }
+
+  /* ==========================================================
+     5. SIMULACIÓN EN TIEMPO REAL
+     ----------------------------------------------------------
+     Cada 8 s, un partido EN VIVO recibe +1 gol aleatorio.
+     Se pausa con Page Visibility API y se desactiva
+     completamente con prefers-reduced-motion.
+  ========================================================== */
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let simInterval = null;
+
+  function simularGol() {
+    // Filtrar solo los partidos en vivo
+    const enVivo = partidos.filter((p) => p.estado === 'EN VIVO');
+    if (!enVivo.length) return;
+
+    // Elegir partido y lado al azar
+    const partido = enVivo[Math.floor(Math.random() * enVivo.length)];
+    const lado = Math.random() < 0.5 ? 'local' : 'visitante';
+
+    // Actualizar datos
+    if (lado === 'local') {
+      partido.golLocal += 1;
+    } else {
+      partido.golVisitante += 1;
+    }
+
+    // Buscar el <span> correcto en el DOM
+    const selector = `[data-match-id="${partido.id}"][data-side="${lado}"]`;
+    const span = document.querySelector(selector);
+    if (!span) return;
+
+    // Actualizar texto
+    const nuevoVal = lado === 'local' ? partido.golLocal : partido.golVisitante;
+    span.textContent = nuevoVal;
+
+    // Animación de destello (solo si motion OK)
+    if (!prefersReducedMotion.matches) {
+      span.classList.add('juan-match__score--flash');
+      span.addEventListener('animationend', function handler() {
+        span.classList.remove('juan-match__score--flash');
+        span.removeEventListener('animationend', handler);
+      });
+    }
+  }
+
+  function iniciarSimulacion() {
+    if (simInterval) return;
+    simInterval = setInterval(simularGol, 8000);
+  }
+
+  function pausarSimulacion() {
+    clearInterval(simInterval);
+    simInterval = null;
+  }
+
+  // Solo iniciar si el usuario no prefiere reduced motion
+  if (!prefersReducedMotion.matches) {
+    iniciarSimulacion();
+
+    // Page Visibility API — pausar cuando la pestaña está oculta
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        pausarSimulacion();
+      } else {
+        iniciarSimulacion();
+      }
+    });
+
+    // Escuchar cambios dinámicos de prefers-reduced-motion
+    prefersReducedMotion.addEventListener('change', function (e) {
+      if (e.matches) {
+        pausarSimulacion();
+      } else {
+        iniciarSimulacion();
+      }
+    });
   }
 
 })();
