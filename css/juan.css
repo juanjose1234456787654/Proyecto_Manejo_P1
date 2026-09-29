@@ -236,17 +236,68 @@
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  /* Sutil fade en los bordes cuando hace scroll horizontal */
-  mask-image: linear-gradient(90deg, #000 95%, transparent);
-  -webkit-mask-image: linear-gradient(90deg, #000 95%, transparent);
+  position: relative;
 }
 
-/* En pantallas amplias no necesitamos el fade */
+/* En pantallas amplias no necesitamos fade ni indicador */
 @media (min-width: 768px) {
   .juan-tabla__wrap {
     mask-image: none;
     -webkit-mask-image: none;
   }
+}
+
+/* ---- Scroll móvil (< 600px) ---- */
+@media (max-width: 599px) {
+  .juan-tabla__wrap {
+    /* Fade en ambos bordes: indica contenido oculto */
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 6%,
+      #000 94%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 6%,
+      #000 94%,
+      transparent
+    );
+  }
+
+  /* Indicador "Desliza" — desaparece con la clase .--scrolled */
+  .juan-tabla__wrap::after {
+    content: '← Desliza →';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent-secondary);
+    opacity: 0.7;
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    background: rgba(0, 229, 255, 0.06);
+    border: 1px solid rgba(0, 229, 255, 0.12);
+    pointer-events: none;
+    animation: juan-swipe-hint 2s ease-in-out infinite;
+    transition: opacity 0.4s ease;
+  }
+
+  .juan-tabla__wrap.--scrolled::after {
+    opacity: 0;
+  }
+}
+
+@keyframes juan-swipe-hint {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(-3px); }
 }
 
 .juan-tabla {
@@ -376,6 +427,26 @@
 }
 
 /* ---------- RESPONSIVE FINE-TUNING ---------- */
+@media (max-width: 599px) {
+  .juan-tabla {
+    font-size: 0.75rem;
+    min-width: 520px;
+  }
+
+  .juan-tabla__th {
+    font-size: 0.65rem;
+    padding: 0.45rem 0.4rem;
+  }
+
+  .juan-tabla__td {
+    padding: 0.5rem 0.4rem;
+  }
+
+  .juan-tabla__td--equipo {
+    min-width: 100px;
+  }
+}
+
 @media (max-width: 480px) {
   .juan-main {
     padding: 5.5rem 1rem 2rem;
