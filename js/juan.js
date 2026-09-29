@@ -94,12 +94,59 @@
   }
 
   /* ==========================================================
-     3. RENDER (próximos commits)
-     ----------------------------------------------------------
-     Aquí se añadirán las funciones que inyectan HTML en:
-       #tabla-posiciones  → renderTabla(tablaPosiciones)
-       #marcador-vivo     → renderPartidos(partidos)
-       #goleadores        → renderGoleadores(goleadores)
+     3. RENDER
   ========================================================== */
+
+  /* ---------- 3A. TABLA DE POSICIONES ---------- */
+  function renderTabla(data) {
+    const container = document.querySelector('#tabla-posiciones .juan-card__body');
+    if (!container) return;
+
+    const encabezados = ['#', '', 'Equipo', 'PJ', 'PG', 'PE', 'PP', 'GF', 'GC', 'DG', 'Pts'];
+
+    const theadCells = encabezados
+      .map((h) => `<th class="juan-tabla__th">${h}</th>`)
+      .join('');
+
+    const tbodyRows = data
+      .map((eq) => {
+        const esLider = eq.pos === 1 ? ' juan-tabla__row--lider' : '';
+        const dgDisplay = eq.dg > 0 ? `+${eq.dg}` : eq.dg;
+
+        return `
+          <tr class="juan-tabla__row${esLider}">
+            <td class="juan-tabla__td juan-tabla__td--pos">${eq.pos}</td>
+            <td class="juan-tabla__td juan-tabla__td--escudo">${eq.escudo}</td>
+            <td class="juan-tabla__td juan-tabla__td--equipo">${eq.equipo}</td>
+            <td class="juan-tabla__td">${eq.pj}</td>
+            <td class="juan-tabla__td">${eq.pg}</td>
+            <td class="juan-tabla__td">${eq.pe}</td>
+            <td class="juan-tabla__td">${eq.pp}</td>
+            <td class="juan-tabla__td">${eq.gf}</td>
+            <td class="juan-tabla__td">${eq.gc}</td>
+            <td class="juan-tabla__td juan-tabla__td--dg">${dgDisplay}</td>
+            <td class="juan-tabla__td juan-tabla__td--pts">${eq.puntos}</td>
+          </tr>`;
+      })
+      .join('');
+
+    container.innerHTML = `
+      <div class="juan-tabla__wrap">
+        <table class="juan-tabla" role="table">
+          <thead>
+            <tr>${theadCells}</tr>
+          </thead>
+          <tbody>${tbodyRows}</tbody>
+        </table>
+      </div>`;
+  }
+
+  /* ---------- 3B. renderPartidos  → próximo commit ---------- */
+  /* ---------- 3C. renderGoleadores → próximo commit ---------- */
+
+  /* ==========================================================
+     4. INIT — llamar renders al cargar
+  ========================================================== */
+  renderTabla(tablaPosiciones);
 
 })();

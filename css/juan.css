@@ -227,11 +227,129 @@
 
 .juan-card__body {
   flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: var(--text-muted);
   font-size: 0.9rem;
+}
+
+/* ---------- TABLA DE POSICIONES ---------- */
+.juan-tabla__wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  /* Sutil fade en los bordes cuando hace scroll horizontal */
+  mask-image: linear-gradient(90deg, #000 95%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, #000 95%, transparent);
+}
+
+/* En pantallas amplias no necesitamos el fade */
+@media (min-width: 768px) {
+  .juan-tabla__wrap {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}
+
+.juan-tabla {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 4px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  min-width: 580px; /* garantiza legibilidad antes de scroll */
+}
+
+/* ---- Encabezado ---- */
+.juan-tabla__th {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0.6rem 0.55rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  white-space: nowrap;
+}
+
+/* Equipo alineado a la izquierda */
+.juan-tabla__th:nth-child(3) {
+  text-align: left;
+}
+
+/* ---- Filas ---- */
+.juan-tabla__row {
+  transition: background var(--transition-fast);
+  border-radius: var(--radius-sm);
+}
+
+/* Zebra striping */
+.juan-tabla__row:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Hover */
+.juan-tabla__row:hover {
+  background: rgba(0, 229, 255, 0.06);
+}
+
+/* ---- Fila líder (1er lugar) ---- */
+.juan-tabla__row--lider {
+  background: rgba(255, 214, 10, 0.05);
+  box-shadow: inset 3px 0 0 var(--accent-gold);
+}
+
+.juan-tabla__row--lider:hover {
+  background: rgba(255, 214, 10, 0.09);
+}
+
+.juan-tabla__row--lider .juan-tabla__td--pos {
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+/* ---- Celdas ---- */
+.juan-tabla__td {
+  padding: 0.65rem 0.55rem;
+  text-align: center;
+  color: var(--text-primary);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.juan-tabla__td--pos {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  width: 2rem;
+}
+
+.juan-tabla__td--escudo {
+  font-size: 1.2rem;
+  width: 2rem;
+  text-align: center;
+  filter: drop-shadow(0 0 4px rgba(0, 229, 255, 0.15));
+}
+
+.juan-tabla__td--equipo {
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  min-width: 120px;
+}
+
+.juan-tabla__td--pts {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--accent-secondary);
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.25);
+}
+
+.juan-tabla__td--dg {
+  font-weight: 600;
+  color: var(--accent-success);
 }
 
 /* ---------- FOOTER ---------- */
@@ -251,7 +369,8 @@
   }
 
   .juan-card,
-  .juan-nav__logo {
+  .juan-nav__logo,
+  .juan-tabla__row {
     transition: none;
   }
 }
