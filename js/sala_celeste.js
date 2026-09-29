@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Datos iniciales de noticias y comunicados
+    // 1. Datos iniciales de noticias (Sintaxis corregida y sin propiedades duplicadas)
     const noticias = [
         {
             id: 1,
@@ -7,9 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
             categoria: "rueda",
             categoriaNombre: "Rueda de Prensa",
             fecha: "28 Sep 2026",
+            autor: "Prensa Oficial GolStats",
             resumen: "El estratega analizó el rendimiento táctico del equipo y destacó la solidez defensiva en los minutos decisivos.",
             contenido: "En una concurrida conferencia de prensa, el cuerpo técnico expresó su satisfacción por alcanzar el objetivo planteado al inicio del torneo. 'El grupo demostró jerarquía en los momentos de mayor presión. Ahora nos enfocamos al 100% en la preparación física y táctica para el partido decisivo', señaló el entrenador.",
-            autor: "Prensa Oficial GolStats",
             reacciones: { like: 12, fuego: 8, aplauso: 15 }
         },
         {
@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
             categoria: "oficial",
             categoriaNombre: "Comunicado Oficial",
             fecha: "27 Sep 2026",
+            autor: "Cuerpo Médico GolStats",
             resumen: "Tras las evaluaciones médicas realizadas esta mañana, se confirma un esguince leve de tobillo.",
             contenido: "El Departamento Médico informa que, tras realizar los exámenes de resonancia magnética correspondientes, el capitán del primer equipo presenta un esguince grado 1. Ya ha iniciado su proceso de fisioterapia y se estima su retorno a los entrenamientos en un lapso de 7 a 10 días.",
-            autor: "Cuerpo Médico GolStats",
             reacciones: { like: 5, fuego: 2, aplauso: 20 }
         },
         {
@@ -29,9 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
             categoria: "entrevista",
             categoriaNombre: "Entrevista",
             fecha: "25 Sep 2026",
+            autor: "Redacción Deportes",
             resumen: "Conversamos con el máximo goleador de la temporada sobre su racha anotadora y el ambiente en el camerino.",
             contenido: "'Los goles son fruto del trabajo colectivo de todo el plantel. Sentimos el respaldo incondicional de la hinchada y queremos darles la alegría del título. Personalmente atravieso uno de los mejores momentos de mi carrera', destacó el ariete.",
-            autor: "Redacción Deportes",
             reacciones: { like: 24, fuego: 19, aplauso: 30 }
         },
         {
@@ -40,14 +40,14 @@ document.addEventListener('DOMContentLoaded', () => {
             categoria: "oficial",
             categoriaNombre: "Comunicado Oficial",
             fecha: "24 Sep 2026",
+            autor: "Departamento de Prensa",
             resumen: "Se informa a los medios de comunicación la apertura del sistema digital para la solicitud de pases de prensa.",
             contenido: "La Dirección de Comunicación habilita a partir de hoy el formulario digital para la acreditación de periodistas, fotógrafos y cadenas de transmisión interesados en la cobertura del partido de la gran final. Las solicitudes se recibirán hasta 48 horas antes del evento.",
-            autor: "Departamento de Prensa",
             reacciones: { like: 9, fuego: 4, aplauso: 11 }
         }
     ];
 
-    // Restaurar o guardar reacciones en localStorage
+    // Persistencia de Reacciones en localStorage
     const STORAGE_REACCIONES = 'golstats_reacciones_noticias';
     let reaccionesGuardadas = JSON.parse(localStorage.getItem(STORAGE_REACCIONES));
     if (!reaccionesGuardadas) {
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem(STORAGE_REACCIONES, JSON.stringify(reaccionesGuardadas));
     }
 
-    // 2. Elementos DOM
+    // 2. Elementos del DOM
     const newsContainer = document.getElementById('newsContainer');
     const searchInput = document.getElementById('searchInput');
     const filterButtons = document.querySelectorAll('#filterGroup button');
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentSearchQuery = '';
     let noticiaSeleccionadaId = null;
 
-    // Toast helper
+    // Toast de notificación
     function showToast(mensaje) {
         const toastEl = document.getElementById('liveToast');
         const toastMsg = document.getElementById('toastMessage');
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 3. Renderizado de Noticias
+    // 3. Renderizado de Noticias (Lógica central sin código repetido)
     function renderNews() {
         if (!newsContainer) return;
         newsContainer.innerHTML = '';
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
             newsContainer.appendChild(col);
         });
 
-        // Eventos para abrir el modal de lectura
+        // Eventos para abrir modal de lectura
         document.querySelectorAll('.btn-leer-mas').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const id = parseInt(e.currentTarget.getAttribute('data-id'));
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('aplausoCount').textContent = reac.aplauso;
     }
 
-    // Listener para Reacciones
+    // Botones de Reacción
     document.querySelectorAll('.btn-reaccion').forEach(btn => {
         btn.addEventListener('click', (e) => {
             if (!noticiaSeleccionadaId) return;
@@ -181,13 +181,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             actualizarContadoresReacciones(noticiaSeleccionadaId);
             renderNews();
-            showToast(`¡Gracias por reaccionar a esta noticia!`);
+            showToast('¡Gracias por tu reacción!');
         });
     });
 
     renderNews();
 
-    // Eventos Buscador y Filtro
+    // 4. Búsqueda y Filtro de Categorías Corregidos (Resuelve el Punto 3)
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             currentSearchQuery = e.target.value.trim();
@@ -199,12 +199,12 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => {
             filterButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            currentCategory = btn.getAttribute('data-category');
-            renderNews();
+            currentCategory = btn.getAttribute('data-category'); // Asigna la categoría seleccionada
+            renderNews(); // Renderiza de nuevo aplicando el filtro
         });
     });
 
-    // 4. Módulo LocalStorage: Acreditaciones de Prensa
+    // 5. Módulo LocalStorage: Acreditaciones de Prensa
     const STORAGE_KEY = 'golstats_acreditaciones_celeste';
 
     function getAcreditaciones() {
@@ -250,7 +250,6 @@ document.addEventListener('DOMContentLoaded', () => {
             acreditacionesList.appendChild(col);
         });
 
-        // Eventos para eliminar
         document.querySelectorAll('.btn-delete-acreditacion').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const idx = parseInt(e.currentTarget.getAttribute('data-index'));
@@ -284,7 +283,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             formAcreditacion.reset();
 
-            // Cerrar Modal
             const modalEl = document.getElementById('modalAcreditacion');
             const modalInstance = bootstrap.Modal.getInstance(modalEl);
             if (modalInstance) modalInstance.hide();
@@ -294,6 +292,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Cargar solicitudes iniciales
     renderAcreditaciones();
 });
