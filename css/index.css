@@ -29,6 +29,23 @@
     border-color var(--transition-base);
 }
 
+/* Cortina de blur degradado justo debajo del navbar */
+.navbar::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 48px;
+  pointer-events: none;
+  z-index: -1;
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  /* Se desvanece hacia abajo: blur total arriba, invisible abajo */
+  mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+}
+
 .navbar.scrolled {
   background: rgba(255, 255, 255, 0.95);
   padding: 0.6rem 2rem;
