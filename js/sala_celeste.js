@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Datos iniciales de noticias (Sintaxis corregida y sin propiedades duplicadas)
+    // 1. Datos iniciales de noticias
     const noticias = [
         {
             id: 1,
@@ -80,16 +80,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 3. Renderizado de Noticias (Lógica central sin código repetido)
+    // 3. Renderizado de Noticias
     function renderNews() {
         if (!newsContainer) return;
         newsContainer.innerHTML = '';
 
-        const filtered = noticias.filter(item => {
-            const matchesCategory = currentCategory === 'todos' || item.categoria === currentCategory;
-            const matchesSearch = item.titulo.toLowerCase().includes(currentSearchQuery.toLowerCase()) ||
-                                  item.resumen.toLowerCase().includes(currentSearchQuery.toLowerCase());
-            return matchesCategory && matchesSearch;
+        // Declaración corregida de la variable filtered
+        const filtered = noticias.filter(n => {
+            const matchCat = currentCategory === 'todos' || n.categoria === currentCategory;
+            const q = currentSearchQuery.toLowerCase();
+            const matchQ = n.titulo.toLowerCase().includes(q) || n.resumen.toLowerCase().includes(q);
+            return matchCat && matchQ;
         });
 
         if (filtered.length === 0) {
@@ -187,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderNews();
 
-    // 4. Búsqueda y Filtro de Categorías Corregidos (Resuelve el Punto 3)
+    // 4. Listener de búsqueda y botones de filtro optimizados
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             currentSearchQuery = e.target.value.trim();
@@ -199,8 +200,8 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => {
             filterButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            currentCategory = btn.getAttribute('data-category'); // Asigna la categoría seleccionada
-            renderNews(); // Renderiza de nuevo aplicando el filtro
+            currentCategory = btn.getAttribute('data-category');
+            renderNews();
         });
     });
 
