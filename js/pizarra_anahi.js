@@ -8,11 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnClear = document.getElementById('btnClear');
     const colorPicker = document.getElementById('colorPicker');
 
-    // Elementos del PR #2
     const lineWidthInput = document.getElementById('lineWidth');
     const btn442 = document.getElementById('btn442');
     const btn433 = document.getElementById('btn433');
     const btnDownload = document.getElementById('btnDownload');
+
+    // Botones de Selector de Cancha
+    const btnThemeGrass = document.getElementById('btnThemeGrass');
+    const btnThemeNeon = document.getElementById('btnThemeNeon');
+    const btnThemeWood = document.getElementById('btnThemeWood');
 
     // 2. Variables de estado
     let isDrawing = false;
@@ -20,12 +24,24 @@ document.addEventListener('DOMContentLoaded', () => {
     let color = colorPicker ? colorPicker.value : '#00ffcc';
     let currentLineWidth = lineWidthInput ? lineWidthInput.value : 3;
 
-    // 3. Dibujar cancha de fútbol base
+    // Configuración de temas visuales de cancha
+    const themes = {
+        grass: { bg: '#2e7d32', line: 'rgba(255, 255, 255, 0.75)' },
+        neon: { bg: '#081a0e', line: '#00ff88' },
+        wood: { bg: '#8c4a19', line: 'rgba(255, 255, 255, 0.85)' }
+    };
+    let currentTheme = 'grass';
+
+    // 3. Dibujar cancha de fútbol base según el tema activo
     function drawField() {
-        ctx.fillStyle = '#2e7d32';
+        const theme = themes[currentTheme] || themes.grass;
+
+        // Fondo del terreno
+        ctx.fillStyle = theme.bg;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
+        // Estilo de marcaciones
+        ctx.strokeStyle = theme.line;
         ctx.lineWidth = 3;
 
         // Línea exterior
@@ -51,6 +67,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Inicializar cancha
     drawField();
+
+    // Lógica para alternar temas de cancha
+    function setActiveTheme(selectedBtn, themeKey) {
+        [btnThemeGrass, btnThemeNeon, btnThemeWood].forEach(btn => {
+            if (btn) btn.classList.remove('active');
+        });
+        if (selectedBtn) selectedBtn.classList.add('active');
+        currentTheme = themeKey;
+        drawField();
+    }
+
+    if (btnThemeGrass) btnThemeGrass.addEventListener('click', () => setActiveTheme(btnThemeGrass, 'grass'));
+    if (btnThemeNeon) btnThemeNeon.addEventListener('click', () => setActiveTheme(btnThemeNeon, 'neon'));
+    if (btnThemeWood) btnThemeWood.addEventListener('click', () => setActiveTheme(btnThemeWood, 'wood'));
 
     // 4. Lógica de dibujo interactivo
     canvas.addEventListener('mousedown', (e) => {
