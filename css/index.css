@@ -14,45 +14,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* Frosted glass blanco */
-  background: rgba(255, 255, 255, 0.80);
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-  border-bottom: 1.5px solid rgba(14, 165, 233, 0.15);
-  box-shadow:
-    0 2px 16px rgba(15, 23, 42, 0.08),
-    0 1px 4px rgba(14, 165, 233, 0.06);
+  /* Frosted glass: transparente + blur fuerte */
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 2px 20px rgba(15, 23, 42, 0.06);
   transition:
     background var(--transition-base),
     padding var(--transition-base),
-    box-shadow var(--transition-base),
-    border-color var(--transition-base);
-}
-
-/* Cortina de blur degradado justo debajo del navbar */
-.navbar::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  height: 60px;
-  pointer-events: none;
-  z-index: 999;              /* encima del contenido para que el blur sea visible */
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
-  /* Desvanece de opaco (arriba) a transparente (abajo) */
-  mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+    box-shadow var(--transition-base);
 }
 
 .navbar.scrolled {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.60);
   padding: 0.6rem 2rem;
-  border-bottom-color: rgba(14, 165, 233, 0.2);
-  box-shadow:
-    0 4px 24px rgba(15, 23, 42, 0.1),
-    0 1px 6px rgba(14, 165, 233, 0.08);
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.1);
 }
 
 .nav-logo {
