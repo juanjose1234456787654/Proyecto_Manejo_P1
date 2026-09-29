@@ -559,6 +559,159 @@
   }
 }
 
+/* ---------- GOLEADORES (ranking) ---------- */
+.juan-scorer__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.juan-scorer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.juan-scorer:hover {
+  background: rgba(0, 229, 255, 0.04);
+  border-color: rgba(0, 229, 255, 0.1);
+}
+
+/* ---- Posición en círculo ---- */
+.juan-scorer__rank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* Escudo */
+.juan-scorer__shield {
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 4px rgba(0, 229, 255, 0.12));
+}
+
+/* Info (nombre + equipo + barra) */
+.juan-scorer__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.juan-scorer__name {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.juan-scorer__team {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Barra proporcional de goles */
+.juan-scorer__bar {
+  height: 3px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 3px;
+  margin-top: 0.2rem;
+  overflow: hidden;
+}
+
+.juan-scorer__bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  transition: width 0.6s cubic-bezier(.4,0,.2,1);
+}
+
+/* Número de goles — derecha */
+.juan-scorer__goals {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent-secondary);
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.2);
+  min-width: 2rem;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ---- 1er lugar destacado en dorado ---- */
+.juan-scorer--top {
+  background: rgba(255, 214, 10, 0.04);
+  border-color: rgba(255, 214, 10, 0.15);
+}
+
+.juan-scorer--top:hover {
+  background: rgba(255, 214, 10, 0.08);
+  border-color: rgba(255, 214, 10, 0.25);
+}
+
+.juan-scorer--top .juan-scorer__rank {
+  background: linear-gradient(135deg, var(--accent-gold), #f59e0b);
+  border-color: var(--accent-gold);
+  color: #1a1a2e;
+  box-shadow: 0 0 10px rgba(255, 214, 10, 0.25);
+}
+
+.juan-scorer--top .juan-scorer__goals {
+  color: var(--accent-gold);
+  text-shadow: 0 0 10px rgba(255, 214, 10, 0.3);
+}
+
+.juan-scorer--top .juan-scorer__bar-fill {
+  background: linear-gradient(90deg, var(--accent-gold), #f59e0b);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 480px) {
+  .juan-scorer {
+    gap: 0.5rem;
+    padding: 0.55rem 0.7rem;
+  }
+
+  .juan-scorer__rank {
+    width: 26px;
+    height: 26px;
+    font-size: 0.7rem;
+  }
+
+  .juan-scorer__name {
+    font-size: 0.75rem;
+  }
+
+  .juan-scorer__goals {
+    font-size: 1rem;
+  }
+}
+
 /* ---------- FOOTER ---------- */
 .juan-footer {
   text-align: center;
@@ -609,6 +762,7 @@
   .juan-nav__logo,
   .juan-tabla__row,
   .juan-match,
+  .juan-scorer,
   .btn-volver,
   .juan-tabla__wrap::after {
     transition: none;

@@ -188,13 +188,42 @@
 
     container.innerHTML = `<div class="juan-match__list">${cards}</div>`;
   }
-  /* ---------- 3C. renderGoleadores → próximo commit ---------- */
+  /* ---------- 3C. GOLEADORES ---------- */
+  function renderGoleadores(data) {
+    const container = document.querySelector('#goleadores .juan-card__body');
+    if (!container) return;
+
+    const items = data
+      .map((g) => {
+        const esTop = g.rank === 1 ? ' juan-scorer--top' : '';
+        const maxGoles = data[0].goles;
+        const pct = Math.round((g.goles / maxGoles) * 100);
+
+        return `
+          <div class="juan-scorer${esTop}">
+            <span class="juan-scorer__rank">${g.rank}</span>
+            <span class="juan-scorer__shield">${g.escudo}</span>
+            <div class="juan-scorer__info">
+              <span class="juan-scorer__name">${g.nombre}</span>
+              <span class="juan-scorer__team">${g.equipo}</span>
+              <div class="juan-scorer__bar" aria-hidden="true">
+                <div class="juan-scorer__bar-fill" style="width:${pct}%"></div>
+              </div>
+            </div>
+            <span class="juan-scorer__goals">${g.goles}</span>
+          </div>`;
+      })
+      .join('');
+
+    container.innerHTML = `<div class="juan-scorer__list">${items}</div>`;
+  }
 
   /* ==========================================================
      4. INIT — llamar renders al cargar
   ========================================================== */
   renderTabla(tablaPosiciones);
   renderPartidos(partidos);
+  renderGoleadores(goleadores);
 
   /* Ocultar el indicador "Desliza" tras el primer scroll */
   const tablaWrap = document.querySelector('.juan-tabla__wrap');
