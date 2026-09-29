@@ -81,9 +81,14 @@
   if (revealEls.length) {
     const observer = new IntersectionObserver(
       (entries) => {
+        let delay = 0;
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+            // Escalonado: +120ms por cada elemento que entra al mismo tiempo
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, delay);
+            delay += 120;
             observer.unobserve(entry.target);
           }
         });
